@@ -56,4 +56,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 group :test do
   gem 'capybara'
+  gem 'database_cleaner'
+  gem 'shoulda-matchers', require: false
 end
