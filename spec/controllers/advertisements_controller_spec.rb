@@ -21,12 +21,12 @@ describe AdvertisementsController do
       let(:advertisement) { FactoryGirl.create(:published_advertisement)}
 
       it "renders :show template" do
-        get :show, id: advertisement
+        get :show, params: { id: advertisement } 
         expect(response).to render_template(:show)
       end
 
       it "assigns requested advertisement to @advertisement" do
-        get :show, id: advertisement
+        get :show, params: { id: advertisement }
         expect(assigns(:advertisement)).to eq(advertisement)
       end
     end
@@ -44,28 +44,28 @@ describe AdvertisementsController do
 
     describe "POST create" do
       it "redirects to login page" do
-        post :create, advertisement: FactoryGirl.attributes_for(:published_advertisement)
+        post :create, params: { advertisement: FactoryGirl.attributes_for(:published_advertisement) }
         expect(response).to redirect_to(new_user_session_url)
       end
     end
 
     describe "GET edit" do
       it "redirects to login page" do
-        get :edit, id: FactoryGirl.create(:published_advertisement)
+        get :edit, params: { id: FactoryGirl.create(:published_advertisement) }
         expect(response).to redirect_to(new_user_session_url)
       end
     end
 
     describe "PUT update" do
       it "redirects to login page" do
-        put :update, id: FactoryGirl.create(:published_advertisement), advertisement: FactoryGirl.attributes_for(:published_advertisement)
+        put :update, params: {id: FactoryGirl.create(:published_advertisement), advertisement: FactoryGirl.attributes_for(:published_advertisement) }
         expect(response).to redirect_to(new_user_session_url)
       end
     end
 
     describe "DELETE destroy" do
       it "redirects to login page" do
-        delete :destroy, id: FactoryGirl.create(:published_advertisement)
+        delete :destroy, params: { id: FactoryGirl.create(:published_advertisement) }
         expect(response).to redirect_to(new_user_session_url)
       end
     end
@@ -96,12 +96,12 @@ describe AdvertisementsController do
         let(:advertisement) { FactoryGirl.create(:published_advertisement)}
 
         it "renders :show template" do
-          get :show, id: advertisement
+          get :show, params: { id: advertisement }
           expect(response).to render_template(:show)
         end
 
         it "assigns requested advertisement to @advertisement" do
-          get :show, id: advertisement
+          get :show, params: { id: advertisement }
           expect(assigns(:advertisement)).to eq(advertisement)
         end
       end
@@ -123,13 +123,13 @@ describe AdvertisementsController do
 
         context "valid data" do
           it "redirects to advertisements#show" do
-            post :create, advertisement: valid_data
+            post :create, params: { advertisement: valid_data }
             expect(response).to redirect_to(advertisement_path(assigns[:advertisement]))
           end
 
           it "creates new advertisement in database" do
             expect {
-              post :create, advertisement: valid_data
+              post :create, params: { advertisement: valid_data }
             }.to change(Advertisement, :count).by(1)
           end
         end
@@ -138,12 +138,12 @@ describe AdvertisementsController do
           let(:invalid_data) { FactoryGirl.attributes_for(:published_advertisement, title: '') }
 
           it "renders :new template" do
-            post :create, advertisement: invalid_data
+            post :create, params: { advertisement: invalid_data }
             expect(response).to render_template(:new)
           end
           it "doesn't create new advertisement in the database" do
             expect {
-              post :create, advertisement: invalid_data
+              post :create, params: { advertisement: invalid_data }
             }.not_to change(Advertisement, :count)
           end
         end
@@ -151,21 +151,21 @@ describe AdvertisementsController do
         context "is not the owner of the advertisement" do
           describe "GET edit" do
             it "redirects to advertisement page" do
-              get :edit, id: FactoryGirl.create(:published_advertisement)
+              get :edit, params: { id: FactoryGirl.create(:published_advertisement) }
               expect(response).to redirect_to(advertisements_path)
             end
           end
 
           describe "PUT update" do
             it "redirects to advertisements page" do
-              put :update, id: FactoryGirl.create(:published_advertisement), advertisement: FactoryGirl.attributes_for(:published_advertisement)
+              put :update, params: { id: FactoryGirl.create(:published_advertisement), advertisement: FactoryGirl.attributes_for(:published_advertisement) }
               expect(response).to redirect_to(advertisements_path)
             end
           end
 
           describe "DELETE destroy" do
             it "redirects to advertisements page" do
-              delete :destroy, id: FactoryGirl.create(:published_advertisement)
+              delete :destroy, params: { id: FactoryGirl.create(:published_advertisement) }
               expect(response).to redirect_to(advertisements_path)
             end
           end
@@ -176,12 +176,12 @@ describe AdvertisementsController do
 
           describe "GET edit" do
             it "renders :edit template" do
-              get :edit, id: advertisement
+              get :edit, params: { id: advertisement }
               expect(response).to render_template(:edit)
             end
 
             it "assigns the requested advertisement to template" do
-              get :edit, id: advertisement
+              get :edit, params: { id: advertisement }
               expect(assigns(:advertisement)).to eq(advertisement)
             end
           end
@@ -191,11 +191,11 @@ describe AdvertisementsController do
               let(:valid_data) { FactoryGirl.attributes_for(:published_advertisement, title: "New Ad") }
 
               it "redirects to advertisement#show" do
-                put :update, id: advertisement, advertisement: valid_data
+                put :update, params: { id: advertisement, advertisement: valid_data }
                 expect(response).to redirect_to(advertisement)
               end
               it "updates advertisement in the database" do
-                put :update, id: advertisement, advertisement: valid_data
+                put :update, params: { id: advertisement, advertisement: valid_data }
                 advertisement.reload
                 expect(advertisement.title).to eq("New Ad")
               end
@@ -205,12 +205,12 @@ describe AdvertisementsController do
               let(:invalid_data) { FactoryGirl.attributes_for(:published_advertisement, title: "", description: 'new') }
 
               it "renders :edit template" do
-                put :update, id: advertisement, advertisement: invalid_data
+                put :update, params: { id: advertisement, advertisement: invalid_data }
                 expect(response).to render_template(:edit)
               end
 
               it "doesn't update advertisement in the database" do
-                put :update, id: advertisement, advertisement: invalid_data
+                put :update, params: { id: advertisement, advertisement: invalid_data }
                 advertisement.reload
                 expect(advertisement.description).not_to eq('new')
               end
@@ -219,12 +219,12 @@ describe AdvertisementsController do
 
           describe "DELETE destroy" do
             it "redirects to advertisement#index" do
-              delete :destroy, id: advertisement
+              delete :destroy, params: { id: advertisement }
               expect(response).to redirect_to(advertisements_path)
             end
 
             it "deletes advertisements from database" do
-              delete :destroy, id: advertisement
+              delete :destroy, params: { id: advertisement }
               expect(Advertisement.exists?(advertisement.id)).to be_falsy
             end
           end
