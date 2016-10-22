@@ -1,0 +1,7 @@
+<% @advertisements.each do |ad| %>
+  <%= ad.title %>
+<% end%>
+
+<% if @advertisements.count == 0 %>
+  <h1>No advertisements published yet.</h1>
+<% end%>

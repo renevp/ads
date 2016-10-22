@@ -40,6 +40,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'spring-commands-rspec'
+  gem 'pry'
 end
 
 group :development do
@@ -58,4 +59,5 @@ group :test do
   gem 'capybara'
   gem 'database_cleaner'
   gem 'shoulda-matchers', require: false
+  gem 'rails-controller-testing'
 end
