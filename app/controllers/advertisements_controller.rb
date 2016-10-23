@@ -44,7 +44,7 @@ class AdvertisementsController < ApplicationController
   private
 
   def advertisement_params
-    params.require(:advertisement).permit(:title, :description, :amount, :status, :user)
+    params.require(:advertisement).permit(:title, :description, :amount, :status, :user, :ad_type)
   end
 
   def owners_only

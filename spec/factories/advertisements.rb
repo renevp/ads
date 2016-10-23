@@ -7,6 +7,8 @@ FactoryGirl.define do
     status :created
     user
 
+    ad_type :sell
+
     factory :published_advertisement do
       status :published
     end

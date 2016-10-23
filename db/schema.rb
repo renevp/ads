@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161022102355) do
+ActiveRecord::Schema.define(version: 20161023040807) do
 
   create_table "advertisements", force: :cascade do |t|
     t.string   "title"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20161022102355) do
     t.datetime "updated_at",  null: false
     t.integer  "status"
     t.integer  "user_id"
+    t.integer  "ad_type"
     t.index ["user_id"], name: "index_advertisements_on_user_id"
   end
 
