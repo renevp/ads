@@ -8,4 +8,6 @@ class Advertisement < ApplicationRecord
 
   enum status: [:created, :published, :closed]
   enum ad_type: [:buy, :sell]
+
+  monetize :price_cents
 end

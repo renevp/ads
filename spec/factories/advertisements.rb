@@ -8,6 +8,7 @@ FactoryGirl.define do
     user
 
     ad_type :sell
+    price Money.new(5000, "AUD")
 
     factory :published_advertisement do
       status :published

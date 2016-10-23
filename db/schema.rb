@@ -10,17 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161023040807) do
+ActiveRecord::Schema.define(version: 20161023060938) do
 
   create_table "advertisements", force: :cascade do |t|
     t.string   "title"
     t.string   "description"
-    t.integer  "amount"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
     t.integer  "status"
     t.integer  "user_id"
     t.integer  "ad_type"
+    t.integer  "price_cents",    default: 0,     null: false
+    t.string   "price_currency", default: "USD", null: false
     t.index ["user_id"], name: "index_advertisements_on_user_id"
   end
 
