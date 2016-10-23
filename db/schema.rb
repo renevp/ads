@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161023060938) do
+ActiveRecord::Schema.define(version: 20161023102357) do
 
   create_table "advertisements", force: :cascade do |t|
     t.string   "title"
@@ -38,6 +38,11 @@ ActiveRecord::Schema.define(version: 20161023060938) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.string   "full_name"
+    t.string   "username"
+    t.boolean  "verified"
+    t.integer  "status"
+    t.string   "mobile_number"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
