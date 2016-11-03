@@ -7,6 +7,8 @@ class User < ApplicationRecord
   validates :verified, presence: true
   validates :status, presence: true
 
+  enum status: [:active, :inactive]
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
