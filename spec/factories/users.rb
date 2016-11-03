@@ -7,6 +7,11 @@ FactoryGirl.define do
       username "renex"
       mobile_number "045555555"
       verified true
+
       status :active
+
+      factory :inactive_user do
+        status :inactive
+      end
   end
 end

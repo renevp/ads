@@ -3,4 +3,5 @@ Rails.application.routes.draw do
   root to: 'welcome#index'
 
   resources :advertisements
+  resources :users
 end
