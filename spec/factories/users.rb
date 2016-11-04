@@ -4,7 +4,7 @@ FactoryGirl.define do
       password "secretsecret"
 
       full_name "Rene Vallennilla"
-      username "renex"
+      sequence(:username) { |n| "username#{n}" } 
       mobile_number "045555555"
       verified true
 
