@@ -128,7 +128,7 @@ describe UsersController do
             put :update, params: { id: user, user: valid_data }
             expect(response).to redirect_to(user)
           end
-          it "updates iuser in the database" do
+          it "updates user in the database" do
             put :update, params: { id: user, user: valid_data }
             user.reload
             expect(user.full_name).to eq("Jon Snow")
