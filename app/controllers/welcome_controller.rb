@@ -1,5 +1,6 @@
 class WelcomeController < ApplicationController
   def index
-    # This is a comment
+    @advertisements_sell = Advertisement.sell
+    @advertisements_buy = Advertisement.buy
   end
 end

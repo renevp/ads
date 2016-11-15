@@ -1,6 +1,13 @@
-<% @advertisements.each do |ad| %>
-  <%= ad.title %>
-<% end%>
+<ul class="collection with-header">
+  <li class="collection-header"><h4>Advertisements</h4></li>
+  <% @advertisements.each do |ad| %>
+    <li class="collection-item"><div><%= ad.title %>
+    <%= link_to advertisement_path(ad), class: "secondary-content" do%>
+      <i class="material-icons">info_outline</i>
+    <% end %>
+    </div></li>
+  <% end%>
+</ul>
 
 <% if @advertisements.count == 0 %>
   <h1>No advertisements published yet.</h1>

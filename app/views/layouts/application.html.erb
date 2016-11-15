@@ -6,9 +6,22 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    "https://fonts.googleapis.com/icon?family=Material+Icons" %>
   </head>
 
   <body>
+    <nav>
+      <div class="nav-wrapper">
+        <%= link_to 'Logo', root_path, class: "brand-logo"%>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li><%= link_to 'New Advertisement', new_advertisement_path %></li>
+          <% if current_user %>
+            <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
+          <% end %>
+        </ul>
+      </div>
+    </nav>
+
     <%= yield %>
   </body>
 </html>

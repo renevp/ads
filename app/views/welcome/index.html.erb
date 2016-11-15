@@ -1,1 +1,59 @@
-<h1>Welcome</h1>
+<h4> Sell </h4>
+
+<table class="striped highlight centered">
+  <thead>
+    <tr>
+        <th data-field="id">Username</th>
+        <th data-field="name">Title</th>
+        <th data-field="price">Price</th>
+        <th data-field="action">Action</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @advertisements_sell.each do |ad| %>
+      <tr>
+        <td><%= ad.user.username %></td>
+        <td><%= ad.title %></td>
+        <td><%= ad.price_cents %></td>
+        <td>
+          <%= link_to 'Sell', advertisement_path(ad), class: "waves-effect waves-light btn"%>
+        </td>
+      </tr>
+    <% end%>
+  </tbody>
+</table>
+
+<% if @advertisements_sell.count == 0 %>
+  <p>No sell advertisements published yet.</p>
+<% end%>
+
+<h4> Buy </h4>
+
+<table class="striped highlight centered">
+  <thead>
+    <tr>
+        <th data-field="id">Username</th>
+        <th data-field="name">Title</th>
+        <th data-field="price">Price</th>
+        <th data-field="action">Action</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @advertisements_buy.each do |ad| %>
+      <tr>
+        <td><%= ad.user.username %></td>
+        <td><%= ad.title %></td>
+        <td><%= ad.price_cents %></td>
+        <td>
+          <%= link_to 'Buy', advertisement_path(ad), class: "waves-effect waves-light btn"%>
+        </td>
+      </tr>
+    <% end%>
+  </tbody>
+</table>
+
+<% if @advertisements_buy.count == 0 %>
+  <p>No buy advertisements published yet.</p>
+<% end%>

@@ -12,4 +12,5 @@ class Advertisement < ApplicationRecord
   enum ad_type: [:buy, :sell]
 
   monetize :price_cents
+
 end
