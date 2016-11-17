@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161104102357) do
+ActiveRecord::Schema.define(version: 20161117030741) do
 
   create_table "advertisements", force: :cascade do |t|
     t.string   "title"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20161104102357) do
     t.integer  "ad_type"
     t.integer  "price_cents",    default: 0,     null: false
     t.string   "price_currency", default: "USD", null: false
+    t.integer  "amount",                         null: false
     t.index ["user_id"], name: "index_advertisements_on_user_id"
   end
 

@@ -4,7 +4,7 @@
       <div class="card-content white-text">
         <span class="card-title"><%= @advertisement.title %></span>
         <span class="card-content">
-          <p><%= @advertisement.price_cents %> | <%= @advertisement.ad_type.capitalize %></p>
+          <p><%= number_to_currency(@advertisement.price_cents) %> | <%= @advertisement.amount %> |<%= @advertisement.ad_type.capitalize %></p>
         </span>
         <div class="card-content">
           <p><%= @advertisement.description %></p>

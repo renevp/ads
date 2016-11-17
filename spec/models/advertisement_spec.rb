@@ -7,6 +7,7 @@ RSpec.describe Advertisement, type: :model do
   it { should belong_to(:user) }
   it { should validate_presence_of(:status)}
   it { should validate_presence_of(:ad_type)}
+  it { should validate_presence_of(:amount)}
 
   it "it should validate price" do
     price = Money.new(3240, "AUD")

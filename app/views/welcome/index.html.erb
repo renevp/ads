@@ -6,6 +6,7 @@
         <th data-field="id">Username</th>
         <th data-field="name">Title</th>
         <th data-field="price">Price</th>
+        <th data-field="amount">Amount</th>
         <th data-field="action">Action</th>
     </tr>
   </thead>
@@ -15,7 +16,8 @@
       <tr>
         <td><%= ad.user.username %></td>
         <td><%= ad.title %></td>
-        <td><%= ad.price_cents %></td>
+        <td><%= number_to_currency(ad.price_cents) %></td>
+        <td><%= ad.amount %></td>
         <td>
           <%= link_to 'Sell', advertisement_path(ad), class: "waves-effect waves-light btn"%>
         </td>
@@ -36,6 +38,7 @@
         <th data-field="id">Username</th>
         <th data-field="name">Title</th>
         <th data-field="price">Price</th>
+        <th data-field="amount">Amount</th>
         <th data-field="action">Action</th>
     </tr>
   </thead>
@@ -45,7 +48,8 @@
       <tr>
         <td><%= ad.user.username %></td>
         <td><%= ad.title %></td>
-        <td><%= ad.price_cents %></td>
+        <td><%= number_to_currency(ad.price_cents) %></td>
+        <td><%= ad.amount %></td>
         <td>
           <%= link_to 'Buy', advertisement_path(ad), class: "waves-effect waves-light btn"%>
         </td>
