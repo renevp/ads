@@ -4,16 +4,10 @@ describe AdvertisementsController do
 
   shared_examples "public access to advertisements" do
     describe "GET Index" do
-      it "renders index template" do
-        get :index
-        expect(response).to render_template(:index)
-      end
 
-      it "assigns only published advertisements to template" do
-        published_ad = FactoryGirl.create(:published_advertisement)
-        created_ad = FactoryGirl.create(:advertisement)
+      it "redirect to home page" do
         get :index
-        expect(assigns(:advertisements)).to match_array([published_ad])
+        expect(response).to redirect_to(root_path)
       end
     end
 
@@ -80,16 +74,10 @@ describe AdvertisementsController do
     it_behaves_like "public access to advertisements"
 
     describe "GET index" do
-      it "renders :index template" do
-        get :index
-        expect(response).to render_template(:index)
-      end
 
-      it "assigns only public advertisements to template" do
-        published_advertisement = FactoryGirl.create(:published_advertisement)
-        created_achievement = FactoryGirl.create(:advertisement)
+      it "redirects to home_page" do
         get :index
-        expect(assigns(:advertisements)).to match_array([published_advertisement])
+        expect(response).to redirect_to(root_path)
       end
     end
 

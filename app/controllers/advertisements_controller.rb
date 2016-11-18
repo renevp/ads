@@ -4,7 +4,7 @@ class AdvertisementsController < ApplicationController
   before_action :owners_only, only: [ :edit, :update, :destroy ]
 
   def index
-    @advertisements = Advertisement.published
+    redirect_to root_path
   end
 
   def show
@@ -19,7 +19,7 @@ class AdvertisementsController < ApplicationController
     @advertisement = Advertisement.new(advertisement_params)
     @advertisement.user = current_user
     if @advertisement.save
-      redirect_to advertisement_path(@advertisement), notice: 'Achievement has been created'
+      redirect_to advertisement_path(@advertisement), notice: 'Advertisement has been created'
     else
       render :new
     end
@@ -51,7 +51,7 @@ class AdvertisementsController < ApplicationController
   def owners_only
     @advertisement = Advertisement.find(params[:id])
     if current_user != @advertisement.user
-      redirect_to advertisements_path
+      redirect_to advertisements_path, alert: "You aren't the owner of this advertisement!"
     end
   end
 end

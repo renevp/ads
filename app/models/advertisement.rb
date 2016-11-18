@@ -14,4 +14,6 @@ class Advertisement < ApplicationRecord
 
   monetize :price_cents
 
+  scope :published_and_sell, -> { where(status: 'published', ad_type: 'sell')  }
+  scope :published_and_buy, -> { where(status: 'published', ad_type: 'buy')  }
 end

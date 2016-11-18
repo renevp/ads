@@ -22,6 +22,22 @@
       </div>
     </nav>
 
+    <% if flash[:notice] %>
+      <div class="card green lighten-5">
+        <div class="card-content green-text">
+          <%= flash[:notice] %>
+        </div>
+      </div>
+    <% end %>
+
+    <% if flash[:alert] %>
+      <div class="card red lighten-5">
+        <div class="card-content red-text">
+          <%= flash[:alert] %>
+        </div>
+      </div>
+    <% end %>
+
     <%= yield %>
   </body>
 </html>
