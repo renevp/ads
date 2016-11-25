@@ -15,7 +15,7 @@
 
       <% if current_user.username == @user.username %>
         <div class="card-action">
-          <%= link_to 'Edit Profile', edit_user_path(@user) %>
+          <%= link_to 'Edit Profile', edit_user_registration_path(@user) %>
           <%= link_to 'Delete Profile', user_path(@user), method: :delete %>
         </div>
       <% end %>
