@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to user_path(@user), notice: 'User has been created'
+      redirect_to user_path(@user), notice: 'Profile has been created'
     else
       render :new
     end
@@ -22,15 +22,19 @@ class UsersController < ApplicationController
 
   def update
     if @user.update_attributes(user_params)
-      redirect_to user_path(@user)
+      redirect_to user_path(@user), notice: 'Profile has been updated'
     else
       render :edit
     end
   end
 
   def destroy
-    @user.destroy
-    redirect_to advertisements_path
+    @user = User.find(params[:id])
+    if @user.update_attributes(status: :inactive)
+      redirect_to user_path(@user), notice: 'Profile is now inactive'
+    else
+      redirect_to user_path(@user), notice: 'There was a problem trying to inactive profile'
+    end
   end
 
   private

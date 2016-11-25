@@ -31,7 +31,7 @@ class AdvertisementsController < ApplicationController
 
   def update
     if @advertisement.update_attributes(advertisement_params)
-      redirect_to advertisement_path(@advertisement)
+      redirect_to advertisement_path(@advertisement), notice: 'Advertisement has been updated'
     else
       render :edit
     end
@@ -39,7 +39,7 @@ class AdvertisementsController < ApplicationController
 
   def destroy
     @advertisement.destroy
-    redirect_to advertisements_path
+    redirect_to advertisements_path, notice: 'Advertisement has been deleted'
   end
 
   private
