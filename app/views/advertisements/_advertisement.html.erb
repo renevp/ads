@@ -1,0 +1,18 @@
+<tr>
+  <td>
+    <%= link_to advertisement.user.username, user_path(advertisement.user)%>
+  </td>
+  <td><%= advertisement.title %></td>
+  <td><%= number_to_currency(advertisement.price_cents) %></td>
+  <td><%= advertisement.amount %></td>
+  <% if advertisement.ad_type == 'sell' %>
+    <td>
+      <%= link_to 'Sell', advertisement_path(advertisement), class: "waves-effect waves-light btn"%>
+    </td>
+  <% else %>
+    <td>
+      <%= link_to 'Buy', advertisement_path(advertisement), class: "waves-effect waves-light btn"%>
+    </td>
+  <% end %>
+
+</tr>

@@ -12,23 +12,9 @@
   </thead>
 
   <tbody>
-    <% @advertisements_sell.each do |ad| %>
-      <tr>
-        <td><%= ad.user.username %></td>
-        <td><%= ad.title %></td>
-        <td><%= number_to_currency(ad.price_cents) %></td>
-        <td><%= ad.amount %></td>
-        <td>
-          <%= link_to 'Sell', advertisement_path(ad), class: "waves-effect waves-light btn"%>
-        </td>
-      </tr>
-    <% end%>
+    <%= render(@advertisements_sell) || "No sell advertisements published yet." %>
   </tbody>
 </table>
-
-<% if @advertisements_sell.count == 0 %>
-  <p>No sell advertisements published yet.</p>
-<% end%>
 
 <h4> Buy </h4>
 
@@ -44,20 +30,6 @@
   </thead>
 
   <tbody>
-    <% @advertisements_buy.each do |ad| %>
-      <tr>
-        <td><%= ad.user.username %></td>
-        <td><%= ad.title %></td>
-        <td><%= number_to_currency(ad.price_cents) %></td>
-        <td><%= ad.amount %></td>
-        <td>
-          <%= link_to 'Buy', advertisement_path(ad), class: "waves-effect waves-light btn"%>
-        </td>
-      </tr>
-    <% end%>
+    <%= render(@advertisements_buy) || "No buy advertisements published yet." %>
   </tbody>
 </table>
-
-<% if @advertisements_buy.count == 0 %>
-  <p>No buy advertisements published yet.</p>
-<% end%>
