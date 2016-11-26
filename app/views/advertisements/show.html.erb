@@ -14,7 +14,7 @@
         </div>
       </div>
 
-      <% if current_user.username == @advertisement.user.username %>
+      <% if current_user && current_user.username == @advertisement.user.username %>
         <div class="card-action">
           <a href="#"><%= @advertisement.status.capitalize %></a>
           <%= link_to 'Edit Advertisement', edit_advertisement_path(@advertisement) %>

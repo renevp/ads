@@ -4,7 +4,7 @@
       <div class="card-content ">
         <span class="card-title"><%= @user.username %></span>
         <span class="card-content">
-          <% if current_user.username == @user.username %>
+          <% if current_user && current_user.username == @user.username %>
             <p>Full name: <%= @user.full_name %> </p>
             <p>Email: <%= @user.email %> </p>
             <p>Mobile Phone: <%= @user.mobile_number %> </p>
@@ -13,10 +13,9 @@
         </span>
       </div>
 
-      <% if current_user.username == @user.username %>
+      <% if current_user && current_user.username == @user.username %>
         <div class="card-action">
           <%= link_to 'Edit Profile', edit_user_registration_path(@user) %>
-          <%= link_to 'Delete Profile', user_path(@user), method: :delete %>
         </div>
       <% end %>
     </div>
