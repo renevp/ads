@@ -1,7 +1,7 @@
 
 class UsersController < ApplicationController
   before_action :authenticate_user!, only: [ :edit, :update, :destroy ]
-  before_action :active_users_only, only: [ :show ]
+  # before_action :active_users_only, only: [ :show ]
   before_action :owners_only, only: [ :edit, :update, :destroy ]
 
   def show

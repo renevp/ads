@@ -23,15 +23,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # DELETE /resource
-  def destroy
-    logger.debug "************************************************"
-    @user = User.find(params[:id])
-    if @user.update_attributes(status: :inactive)
-      redirect_to user_path(@user), notice: 'Profile is now inactive'
-    else
-      redirect_to user_path(@user), notice: 'There was a problem trying to inactive profile'
-    end
-  end
+  # def destroy
+  #   super
+  # end
 
   # GET /resource/cancel
   # Forces the session data which is usually expired after sign

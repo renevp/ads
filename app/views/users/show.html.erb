@@ -15,7 +15,8 @@
 
       <% if current_user && current_user.username == @user.username %>
         <div class="card-action">
-          <%= link_to 'Edit Profile', edit_user_registration_path(@user) %>
+          <%= link_to 'Change Account Details', edit_user_path(@user) %>
+          <%= link_to 'Edit Authentication', edit_user_registration_path(@user) %>
         </div>
       <% end %>
     </div>
