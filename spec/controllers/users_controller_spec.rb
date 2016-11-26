@@ -17,14 +17,6 @@ describe UsersController do
           expect(assigns(:user)).to eq(user)
         end
       end
-
-      context "inactive user" do
-        let(:user) { FactoryGirl.create(:inactive_user)}
-        it "doesn't render :show template if the user is inactive" do
-          get :show, params: { id: user }
-          expect(response).to redirect_to(advertisements_path)
-        end
-      end
     end
 
     describe "POST create" do
@@ -152,12 +144,13 @@ describe UsersController do
       describe "DELETE destroy" do
         it "redirects to user#index" do
           delete :destroy, params: { id: user }
-          expect(response).to redirect_to(advertisements_path)
+          expect(response).to redirect_to(user_path)
         end
 
-        it "deletes user from database" do
+        it "desactivates user" do
           delete :destroy, params: { id: user }
-          expect(User.exists?(user.id)).to be_falsy
+          user.reload
+          expect(user.status).to eq('inactive')
         end
       end
     end

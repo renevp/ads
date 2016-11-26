@@ -37,13 +37,11 @@
 <% end %>
 
 <% if @user.status == 'active'%>
-
   <h3>Cancel my account</h3>
   <p>Unhappy? <%= button_to "Cancel my account", user_path(@user), data: { confirm: "Are you sure?" }, method: :delete, class: 'btn left' %></p>
-
 <% else %>
   <h3>Activate my account</h3>
-  <%= button_to "Activate my account", user_path(@user), data: { confirm: "Are you sure?" }, method: :put, class: 'btn left' %>
+  <%= button_to "Activate my account", activate_user_path(@user), method: :patch, params: { status: 'active' }, class: 'btn left' %>
 <% end %>
 
 <br>

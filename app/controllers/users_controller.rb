@@ -28,9 +28,18 @@ class UsersController < ApplicationController
     end
   end
 
+  def activate
+    @user = User.find(params[:id])
+    if @user.update(status: params[:status])
+      redirect_to user_path(@user), notice: 'Profile has been activated'
+    else
+      render :edit
+    end
+  end
+
   def destroy
     @user = User.find(params[:id])
-    if @user.update_attributes(status: :inactive)
+    if @user.update(status: :inactive)
       redirect_to user_path(@user), notice: 'Profile is now inactive'
     else
       redirect_to user_path(@user), notice: 'There was a problem trying to inactive profile'

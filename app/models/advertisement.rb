@@ -17,9 +17,10 @@ class Advertisement < ApplicationRecord
   scope :published_and_sell, -> { where(status: 'published', ad_type: 'sell')  }
   scope :published_and_buy, -> { where(status: 'published', ad_type: 'buy')  }
   scope :ordered_by_price, -> { order(price_cents: :desc) }
+  # scope :active_user, -> { joins(:user).where(user: { status: :active}) }
 
   class << self
-    def published_and_sell_ordered_by_price
+    def published_sell_ordered_by_price
       published_and_sell.ordered_by_price
     end
 

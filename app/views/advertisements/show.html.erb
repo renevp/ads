@@ -18,7 +18,7 @@
         <div class="card-action">
           <a href="#"><%= @advertisement.status.capitalize %></a>
           <%= link_to 'Edit Advertisement', edit_advertisement_path(@advertisement) %>
-          <%= link_to 'Delete Advertisement', advertisement_path(@advertisement), method: :delete %>
+          <%= link_to 'Delete Advertisement', advertisement_path(@advertisement), data: { confirm: "Are you sure?" }, method: :delete %>
         </div>
       <% end %>
     </div>
