@@ -1,31 +1,15 @@
 
 class UsersController < ApplicationController
   before_action :authenticate_user!, only: [ :edit, :update, :destroy ]
-  # before_action :active_users_only, only: [ :show ]
   before_action :owners_only, only: [ :edit, :update, :destroy ]
+  rescue_from ActiveRecord::RecordNotFound, with: :invalid_user
 
   def show
     @user = User.find(params[:id])
   end
 
-  def create
-    @user = User.new(user_params)
-    if @user.save
-      redirect_to user_path(@user), notice: 'Profile has been created'
-    else
-      render :new
-    end
-  end
-
-  def edit
-  end
-
-  def update
-    if @user.update_attributes(user_params)
-      redirect_to user_path(@user), notice: 'Profile has been updated'
-    else
-      render :edit
-    end
+  def new
+    redirect_to new_user_session_path
   end
 
   def activate
@@ -33,7 +17,7 @@ class UsersController < ApplicationController
     if @user.update(status: params[:status])
       redirect_to user_path(@user), notice: 'Profile has been activated'
     else
-      render :edit
+      redirect_to user_path(@user), alert: 'There was a problem trying to activate profile'
     end
   end
 
@@ -42,28 +26,21 @@ class UsersController < ApplicationController
     if @user.update(status: :inactive)
       redirect_to user_path(@user), notice: 'Profile is now inactive'
     else
-      redirect_to user_path(@user), notice: 'There was a problem trying to inactive profile'
+      redirect_to user_path(@user), alert: 'There was a problem trying to inactive profile'
     end
   end
 
   private
-
-  def active_users_only
-    @user = User.find(params[:id])
-    unless @user.status == 'active'
-      redirect_to advertisements_path
-    end
-  end
-
-  def user_params
-    params.require(:user).permit(:email, :password, :full_name, :username, :status, :verified, :mobile_number)
-  end
 
   def owners_only
     @user = User.find(params[:id])
     if current_user != @user
       redirect_to user_path
     end
+  end
+
+  def invalid_user
+    redirect_to new_user_session_path, alert: "User doesn't exist, please sign up"
   end
 
 end
