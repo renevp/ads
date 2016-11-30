@@ -22,23 +22,26 @@
   </div>
 </div>
 
-<h4> Sell </h4>
+<% if @sell_ads.count > 0 %>
+  <h4> Sell </h4>
 
-<table class="striped highlight centered">
-  <thead>
-    <tr>
-        <th data-field="name">Title</th>
-        <th data-field="price">Price</th>
-        <th data-field="amount">Amount</th>
-        <th data-field="action">Action</th>
-    </tr>
-  </thead>
+  <table class="striped highlight centered">
+    <thead>
+      <tr>
+          <th data-field="name">Title</th>
+          <th data-field="price">Price</th>
+          <th data-field="amount">Amount</th>
+          <th data-field="action">Action</th>
+      </tr>
+    </thead>
 
-  <tbody>
-    <%= render(@sell_ads) || "No sell advertisements published yet." %>
-  </tbody>
-</table>
+    <tbody>
+      <%= render(@sell_ads) || "No sell advertisements published yet." %>
+    </tbody>
+  </table>
+<% end %>
 
+<% if @buy_ads.count > 0 %>
 <h4> Buy </h4>
 
 <table class="striped highlight centered">
@@ -55,3 +58,4 @@
     <%= render(@buy_ads) || "No buy advertisements published yet." %>
   </tbody>
 </table>
+<% end %>
