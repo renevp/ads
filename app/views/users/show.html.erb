@@ -21,3 +21,39 @@
     </div>
   </div>
 </div>
+
+<h4> Sell </h4>
+
+<table class="striped highlight centered">
+  <thead>
+    <tr>
+        <th data-field="id">Username</th>
+        <th data-field="name">Title</th>
+        <th data-field="price">Price</th>
+        <th data-field="amount">Amount</th>
+        <th data-field="action">Action</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <%= render(@sell_ads) || "No sell advertisements published yet." %>
+  </tbody>
+</table>
+
+<h4> Buy </h4>
+
+<table class="striped highlight centered">
+  <thead>
+    <tr>
+        <th data-field="id">Username</th>
+        <th data-field="name">Title</th>
+        <th data-field="price">Price</th>
+        <th data-field="amount">Amount</th>
+        <th data-field="action">Action</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <%= render(@buy_ads) || "No buy advertisements published yet." %>
+  </tbody>
+</table>

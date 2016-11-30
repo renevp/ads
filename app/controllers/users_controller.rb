@@ -6,6 +6,13 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    if @user == current_user
+      @sell_ads = Advertisement.user_sell_ads(@user)
+      @buy_ads = Advertisement.user_buy_ads(@user)
+    else 
+      @sell_ads = Advertisement.user_published_sell_ads(@user)
+      @buy_ads = Advertisement.user_published_buy_ads(@user)
+    end
   end
 
   def new

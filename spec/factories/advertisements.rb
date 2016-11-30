@@ -11,5 +11,35 @@ FactoryGirl.define do
     factory :published_advertisement do
       status :published
     end
+
+    factory :published_sell_ad do
+      status :published
+      ad_type :sell
+    end
+
+    factory :published_buy_ad do
+      status :published
+      ad_type :buy
+    end
+
+    factory :created_sell_ad do
+      status :created
+      ad_type :sell
+    end
+
+    factory :created_buy_ad do
+      status :created
+      ad_type :buy
+    end
+
+    factory :closed_sell_ad do
+      status :closed
+      ad_type :sell
+    end
+
+    factory :closed_buy_ad do
+      status :closed
+      ad_type :buy
+    end
   end
 end
