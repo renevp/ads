@@ -1,7 +1,9 @@
 <tr>
-  <td>
-    <%= link_to advertisement.user.username, user_path(advertisement.user)%>
-  </td>
+  <% unless @user %>
+    <td>
+      <%= link_to advertisement.user.username, user_path(advertisement.user)%>
+    </td>
+  <% end %>
   <td><%= advertisement.title %></td>
   <td><%= number_to_currency(advertisement.price_cents) %></td>
   <td><%= advertisement.amount %></td>
