@@ -32,6 +32,22 @@ class Advertisement < ApplicationRecord
     def published_buy
       published_and_buy.active_user.ordered_by_price
     end
+
+    def user_published_sell(user)
+      user_published_sell_ads(user).ordered_by_price
+    end
+
+    def user_published_buy(user)
+      user_published_buy_ads(user).ordered_by_price
+    end
+
+    def user_all_sell(user)
+      user_sell_ads(user).ordered_by_price
+    end
+
+    def user_all_buy(user)
+      user_buy_ads(user).ordered_by_price
+    end
   end
 
 end

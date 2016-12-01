@@ -10,6 +10,7 @@
             <p>Mobile Phone: <%= @user.mobile_number %> </p>
           <% end %>
           <p>Verified: <%= @user.verified %> </p>
+          <p>Account created at: <%= @user.created_at.strftime('%d-%m-%Y-T%H:%M:%z') %> </p>
         </span>
       </div>
 

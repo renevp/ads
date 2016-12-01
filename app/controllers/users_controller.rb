@@ -7,11 +7,11 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     if @user == current_user
-      @sell_ads = Advertisement.user_sell_ads(@user)
-      @buy_ads = Advertisement.user_buy_ads(@user)
-    else 
-      @sell_ads = Advertisement.user_published_sell_ads(@user)
-      @buy_ads = Advertisement.user_published_buy_ads(@user)
+      @sell_ads = Advertisement.user_all_sell(@user)
+      @buy_ads = Advertisement.user_all_buy(@user)
+    else
+      @sell_ads = Advertisement.user_published_sell(@user)
+      @buy_ads = Advertisement.user_published_buy(@user)
     end
   end
 
