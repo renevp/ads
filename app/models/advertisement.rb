@@ -50,4 +50,5 @@ class Advertisement < ApplicationRecord
     end
   end
 
+
 end

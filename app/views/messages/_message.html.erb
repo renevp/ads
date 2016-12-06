@@ -1,0 +1,7 @@
+<tr>
+  <td>
+    <%= link_to message.sender.username, user_path(message.sender)%>
+  </td>
+  <td><%= message.body %></td>
+  <td><%= message.created_at %></td>
+</tr>

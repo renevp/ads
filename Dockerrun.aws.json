@@ -1,0 +1,63 @@
+{
+  "AWSEBDockerrunVersion": 2,
+  "volumes": [
+    {
+      "name": "myapp",
+      "host": {
+        "sourcePath": "/app"
+      }
+    },
+    {
+      "name": "myapp-postgres",
+      "host": {
+        "sourcePath": "/app"
+      }
+    }
+  ],
+  "containerDefinitions": [
+    {
+      "name": "postgres",
+      "image": "postgres:9.4",
+      "environment": [
+        {
+          "name": "Container",
+          "value": "postgres"
+        }
+      ],
+      "portMappings": [
+        {
+          "hostPort": 5432,
+          "containerPort": 5432
+        }
+      ],
+      "essential": true,
+      "memory": 128,
+      "mountPoints": [
+        {
+          "sourceVolume": "myapp-postgres",
+          "containerPath": "/var/lib/postgresql/data",
+          "readOnly": false
+        }
+      ]
+    },
+    {
+      "name": "ads",
+      "image": "renevp/ads:latest",
+      "environment": [
+        {
+          "name": "Container",
+          "value": "ads"
+        }
+      ],
+      "essential": true,
+      "memory": 128,
+      "mountPoints": [
+        {
+          "sourceVolume": "myapp",
+          "containerPath": "/myapp",
+          "readOnly": false
+        }
+      ]
+    }
+  ]
+}

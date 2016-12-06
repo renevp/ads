@@ -1,0 +1,15 @@
+<h4> Messages </h4>
+
+<table class="striped highlight centered">
+  <thead>
+    <tr>
+        <th data-field="id">Username</th>
+        <th data-field="name">Message</th>
+        <th data-field="date">Sent at</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <%= render(@messages) || "No messages yet." %>
+  </tbody>
+</table>
