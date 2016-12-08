@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     member do
       patch 'activate'
     end
-    resources :messages
+    resources :messages, except: [:edit, :update]
   end
 
 

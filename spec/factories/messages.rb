@@ -4,6 +4,7 @@ FactoryGirl.define do
     recipient :user
     advertisement :advertisement
     status :read
-    body "MyString"
+    body "MyMessage"
+    title "MyTitle"
   end
 end
