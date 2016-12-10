@@ -16,13 +16,15 @@
           <b>Description: </b><%= @advertisement.description %>
         </div>
       </div>
-
+      <div class="card-action light-blue darken-4">
       <% if current_user && current_user.username == @advertisement.user.username %>
-        <div class="card-action light-blue darken-4">
-          <%= link_to 'Edit Advertisement', edit_advertisement_path(@advertisement) %>
-          <%= link_to 'Delete Advertisement', advertisement_path(@advertisement), data: { confirm: "Are you sure?" }, method: :delete %>
-        </div>
+        <%= link_to 'Edit Advertisement', edit_advertisement_path(@advertisement) %>
+        <%= link_to 'Delete Advertisement', advertisement_path(@advertisement), data: { confirm: "Are you sure?" }, method: :delete %>
+      <% else %>
+        <%= link_to 'Send Message', new_advertisement_message_path(@advertisement) %>
+        <%= link_to 'Messages', advertisement_messages_path(@advertisement) %>
       <% end %>
+      </div>
     </div>
   </div>
 </div>

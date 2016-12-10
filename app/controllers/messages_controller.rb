@@ -3,7 +3,7 @@ class MessagesController < ApplicationController
   before_action :owners_only, only: [ :destroy ]
 
   def index
-    @messages = Message.all
+    @messages = Message.user_messages(current_user)
   end
 
   def show
@@ -12,19 +12,19 @@ class MessagesController < ApplicationController
 
   def new
     @message = Message.new
+    @advertisement = Advertisement.find(params[:advertisement_id])
+    binding.pry
   end
 
   def create
     if message_params.permitted?
       @message = Message.new
       @message.sender = current_user
-      @message.recipient = User.find(params[:message][:recipient])
-      @message.advertisement = Advertisement.find(params[:message][:advertisement])
-      @message.title = params[:message][:title]
-      @message.body = params[:message][:body]
-      @message.body = params[:message][:status]
+      @message.advertisement = Advertisement.find(params[:advertisement_id])
+      @message.recipient = User.find(@message.advertisement.user.id)
+      @message.body = params[:body]
       if @message.save
-        redirect_to user_message_path(current_user, @message), notice: "Message has been sent"
+        redirect_to advertisement_message(current_user, @message), notice: "Message has been sent"
       else
         render :new, alert: "Message can'be created"
       end
@@ -42,7 +42,7 @@ class MessagesController < ApplicationController
   private
 
   def message_params
-    params.require(:message).permit(:title, :body, :recipient, :sender, :advertisement, :status)
+    params.require(:message).permit(:title, :body, :recipient, :sender, :advertisement_id, :status)
   end
 
   def owners_only

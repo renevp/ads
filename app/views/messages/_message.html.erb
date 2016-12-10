@@ -1,7 +1,16 @@
 <tr>
   <td>
-    <%= link_to message.sender.username, user_path(message.sender)%>
+    <% if current_user == message.recipient %>
+      <%= link_to message.sender.username, user_path(message.sender)%>
+    <% else %>
+      <%= link_to message.recipient.username, user_path(message.recipient)%>
+    <% end %>
   </td>
-  <td><%= message.body %></td>
+  <td>
+    <%= link_to message.advertisement.title, advertisement_path(message.advertisement)%>
+  </td>
+  <td>
+    <%= link_to message.body, advertisement_message_path(message.advertisement, message)%>
+  </td>
   <td><%= message.created_at %></td>
 </tr>
