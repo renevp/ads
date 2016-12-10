@@ -6,5 +6,5 @@ class Message < ApplicationRecord
   validates :title, presence: true
   validates :body, presence: true
 
-  enum status: [:created, :sent, :read]
+  enum status: [:inbox, :sent]
 end

@@ -76,12 +76,12 @@ describe MessagesController do
 
     describe "GET show" do
       it "renders :show template" do
-        get :show, params: {user_id: recipient.id, id: message.id }
+        get :show, params: {user_id: user.id, id: message.id }
         expect(response).to render_template(:show)
       end
 
       it "assigns requested Message to @message" do
-        get :show, params: { user_id: recipient.id, id: message.id }
+        get :show, params: { user_id: user.id, id: message.id }
         expect(assigns(:message)).to eq(message)
       end
     end

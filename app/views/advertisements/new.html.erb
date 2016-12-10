@@ -1,10 +1,16 @@
-<%= simple_form_for @advertisement do |f| %>
-  <%= f.input :title %>
-  <%= f.input :description, as: :text %>
-  <%= f.input :price_cents, label: 'Price', placeholder: '0.00' %>
-  <%= f.input :amount, label: 'Amount', placeholder: '0' %>
-  <%= f.input :status, collection: Hash[Advertisement.statuses.map { |k,v| [ k.split('_').first.capitalize, k ]}] %>
-  <%= f.input :ad_type, label: 'Type', collection: Hash[Advertisement.ad_types.map { |k,v| [ k.split('_').first.capitalize, k ]}] %>
+<div class="row edit-ad">
+  <div class="col s3"></div>
+  <div class="col s6">
+  <%= form_for @advertisement do |f| %>
+    <%= f.text_field :title, placeholder: 'Title'%>
+    <%= f.text_area :description , placeholder: 'Description'%>
+    <%= f.text_field :price_cents, placeholder: 'Price' %>
+    <%= f.text_field :amount, placeholder: 'Amount' %>
+    <%= f.select :status, options_for_select(Advertisement.statuses.collect{|s| s.first.capitalize}) %>
+    <%= f.select :ad_type, options_for_select(Advertisement.ad_types.collect{|t| t.first.capitalize}) %>
 
-  <%= f.submit 'Create Advertisement', class: 'btn right' %>
-<% end %>
+    <%= f.submit 'Create Advertisement', class: 'btn' %>
+  <% end %>
+  </div>
+  <div class="col s3"></div>
+</div>

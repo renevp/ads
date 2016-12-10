@@ -3,3 +3,20 @@
 $primary-color: color("blue", "lighten-2") !default;
 $secondary-color: color("yellow") !default;
 @import 'materialize';
+
+.ad-list {
+  .btn {
+    height: 25px;
+    line-height: 25px;
+    padding-bottom: 5px;
+  }
+}
+
+td {
+  font-size: 12px;
+  padding: 5px 5px;
+}
+
+.card-title {
+  font-weight: bold !important;
+}

@@ -9,7 +9,9 @@
   <td><%= advertisement.amount %></td>
   <% if advertisement.ad_type == 'sell' %>
     <td>
-      <%= link_to 'Sell', advertisement_path(advertisement), class: "waves-effect waves-light btn"%>
+      <div class="ad-list">
+        <%= link_to 'Sell', advertisement_path(advertisement), class: "waves-effect waves-light btn"%>
+      </div>
     </td>
   <% else %>
     <td>

@@ -1,35 +1,42 @@
 <h4> Sell </h4>
+<% if @advertisements_sell.count > 0 %>
+  <table class="striped highlight centered">
+    <thead>
+      <tr>
+          <th data-field="id">Username</th>
+          <th data-field="name">Title</th>
+          <th data-field="price">Price</th>
+          <th data-field="amount">Amount</th>
+          <th data-field="action">Action</th>
+      </tr>
+    </thead>
 
-<table class="striped highlight centered">
-  <thead>
-    <tr>
-        <th data-field="id">Username</th>
-        <th data-field="name">Title</th>
-        <th data-field="price">Price</th>
-        <th data-field="amount">Amount</th>
-        <th data-field="action">Action</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <%= render(@advertisements_sell) || "No sell advertisements published yet." %>
-  </tbody>
-</table>
+    <tbody>
+      <%= render(@advertisements_sell) %>
+    </tbody>
+  </table>
+<% else %>
+  <p>No sell advertisements published yet.</p>
+<% end %>
 
 <h4> Buy </h4>
 
-<table class="striped highlight centered">
-  <thead>
-    <tr>
-        <th data-field="id">Username</th>
-        <th data-field="name">Title</th>
-        <th data-field="price">Price</th>
-        <th data-field="amount">Amount</th>
-        <th data-field="action">Action</th>
-    </tr>
-  </thead>
+<% if @advertisements_buy.count > 0 %>
+  <table class="striped highlight centered">
+    <thead>
+      <tr>
+          <th data-field="id">Username</th>
+          <th data-field="name">Title</th>
+          <th data-field="price">Price</th>
+          <th data-field="amount">Amount</th>
+          <th data-field="action">Action</th>
+      </tr>
+    </thead>
 
-  <tbody>
-    <%= render(@advertisements_buy) || "No buy advertisements published yet." %>
-  </tbody>
-</table>
+    <tbody>
+      <%= render(@advertisements_buy) %>
+    </tbody>
+  </table>
+<% else %>
+  <p>No buy advertisements published yet.</p>
+<% end %>

@@ -3,7 +3,7 @@ FactoryGirl.define do
     sender :user
     recipient :user
     advertisement :advertisement
-    status :read
+    status :sent
     body "MyMessage"
     title "MyTitle"
   end

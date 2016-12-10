@@ -34,6 +34,7 @@ class MessagesController < ApplicationController
   end
 
   def destroy
+    binding.pry
     @message.destroy
     redirect_to user_messages_path, notice: "Message deleted"
   end
@@ -46,7 +47,6 @@ class MessagesController < ApplicationController
 
   def owners_only
     @message = Message.find(params[:id])
-    binding.pry
     if current_user != @message.recipient
       redirect_to user_messages_path, alert: "You aren't the owner of this message!"
     end
