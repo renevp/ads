@@ -13,18 +13,18 @@ class MessagesController < ApplicationController
   def new
     @message = Message.new
     @advertisement = Advertisement.find(params[:advertisement_id])
-    binding.pry
   end
 
   def create
     if message_params.permitted?
       @message = Message.new
       @message.sender = current_user
-      @message.advertisement = Advertisement.find(params[:advertisement_id])
+      @advertisement = Advertisement.find(params[:advertisement_id])
+      @message.advertisement = @advertisement
       @message.recipient = User.find(@message.advertisement.user.id)
-      @message.body = params[:body]
+      @message.body = params[:message][:body]
       if @message.save
-        redirect_to advertisement_message(current_user, @message), notice: "Message has been sent"
+        redirect_to advertisement_message_path(@message.advertisement, @message), notice: "Message has been sent"
       else
         render :new, alert: "Message can'be created"
       end
@@ -34,9 +34,8 @@ class MessagesController < ApplicationController
   end
 
   def destroy
-    binding.pry
     @message.destroy
-    redirect_to user_messages_path, notice: "Message deleted"
+    redirect_to advertisement_messages_path, notice: "Message deleted"
   end
 
   private
@@ -47,8 +46,8 @@ class MessagesController < ApplicationController
 
   def owners_only
     @message = Message.find(params[:id])
-    if current_user != @message.recipient
-      redirect_to user_messages_path, alert: "You aren't the owner of this message!"
+    if current_user != @message.sender
+      redirect_to advertisement_messages_path, alert: "You aren't the owner of this message!"
     end
   end
 end

@@ -20,9 +20,9 @@
       <% if current_user && current_user.username == @advertisement.user.username %>
         <%= link_to 'Edit Advertisement', edit_advertisement_path(@advertisement) %>
         <%= link_to 'Delete Advertisement', advertisement_path(@advertisement), data: { confirm: "Are you sure?" }, method: :delete %>
+        <%= link_to 'Messages', advertisement_messages_path(@advertisement) %>
       <% else %>
         <%= link_to 'Send Message', new_advertisement_message_path(@advertisement) %>
-        <%= link_to 'Messages', advertisement_messages_path(@advertisement) %>
       <% end %>
       </div>
     </div>
