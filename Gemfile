@@ -42,8 +42,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'spring-commands-rspec'
-  gem 'pry'
-  gem 'rails-pry'
+  gem 'pry-rails'
 end
 
 group :development do
