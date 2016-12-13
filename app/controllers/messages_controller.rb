@@ -3,7 +3,8 @@ class MessagesController < ApplicationController
   before_action :owners_only, only: [ :destroy ]
 
   def index
-    @messages = Message.user_messages(current_user)
+    @advertisement = Advertisement.find(params[:advertisement_id])
+    @messages = Message.advertisement_messages(@advertisement)
   end
 
   def show

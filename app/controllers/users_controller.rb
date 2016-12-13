@@ -28,6 +28,11 @@ class UsersController < ApplicationController
     end
   end
 
+  def messages
+    @messages = Message.user_messages(current_user)
+    render 'messages/index'
+  end
+
   def destroy
     @user = User.find(params[:id])
     if @user.update(status: :inactive)

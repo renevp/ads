@@ -6,10 +6,10 @@
     <%= f.text_area :description , placeholder: 'Description'%>
     <%= f.text_field :price_cents, placeholder: 'Price' %>
     <%= f.text_field :amount, placeholder: 'Amount' %>
-    <%= f.select :status, options_for_select(Advertisement.statuses.collect{|s| s.first.capitalize}) %>
-    <%= f.select :ad_type, options_for_select(Advertisement.ad_types.collect{|t| t.first.capitalize}) %>
+    <%= f.select :status, options_for_select(Hash[Advertisement.statuses.map { |k,v| [ k.split('_').first.capitalize, k ]}], @advertisement.status) %>
+    <%= f.select :ad_type, options_for_select(Hash[Advertisement.ad_types.map { |k,v| [ k.split('_').first.capitalize, k ]}], @advertisement.ad_type) %>
 
-    <%= f.submit 'Create Advertisement', class: 'btn' %>
+    <%= f.submit 'Edit Advertisement', class: 'btn' %>
   <% end %>
   </div>
   <div class="col s3"></div>

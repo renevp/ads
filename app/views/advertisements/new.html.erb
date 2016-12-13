@@ -6,8 +6,8 @@
     <%= f.text_area :description , placeholder: 'Description'%>
     <%= f.text_field :price_cents, placeholder: 'Price' %>
     <%= f.text_field :amount, placeholder: 'Amount' %>
-    <%= f.select :status, options_for_select(Advertisement.statuses.collect{|s| s.first.capitalize}) %>
-    <%= f.select :ad_type, options_for_select(Advertisement.ad_types.collect{|t| t.first.capitalize}) %>
+    <%= f.select :status, options_for_select(Advertisement.statuses.keys) %>
+    <%= f.select :ad_type, options_for_select(Advertisement.ad_types.keys) %>
 
     <%= f.submit 'Create Advertisement', class: 'btn' %>
   <% end %>
