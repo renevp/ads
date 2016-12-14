@@ -72,7 +72,7 @@ describe MessagesController do
       end
 
       it "shows user messages" do
-        message = FactoryGirl.create(:message, sender: user) 
+        message = FactoryGirl.create(:message, sender: user, advertisement: ad) 
         get :index, params: { advertisement_id: ad }
         expect(assigns(:messages)).to match_array([message])
       end
