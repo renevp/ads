@@ -72,7 +72,7 @@ describe MessagesController do
       end
 
       it "shows user messages" do
-        message = FactoryGirl.create(:message, sender: user, advertisement: ad) 
+        message = FactoryGirl.create(:message, sender: user, advertisement: ad)
         get :index, params: { advertisement_id: ad }
         expect(assigns(:messages)).to match_array([message])
       end
@@ -106,9 +106,9 @@ describe MessagesController do
 
       context "valid data" do
         let(:valid_data) { FactoryGirl.attributes_for(:message) }
-        it "redirects to messages#show" do
+        it "redirects to messages#index" do
           post :create, params: { advertisement_id: ad, message: valid_data }
-          expect(response).to redirect_to(advertisement_message_path(ad, id: assigns[:message]))
+          expect(response).to redirect_to(advertisement_messages_path(ad))
         end
 
         it "creates new message in database" do

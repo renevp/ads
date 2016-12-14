@@ -1,16 +1,16 @@
-<tr>
-  <td>
-    <% if current_user == message.recipient %>
-      <%= link_to message.sender.username, user_path(message.sender)%>
-    <% else %>
-      <%= link_to message.recipient.username, user_path(message.recipient)%>
-    <% end %>
-  </td>
-  <td>
-    <%= link_to message.advertisement.title, advertisement_path(message.advertisement)%>
-  </td>
-  <td>
-    <%= link_to message.body, advertisement_message_path(message.advertisement, message)%>
-  </td>
-  <td><%= message.created_at %></td>
-</tr>
+<div class="row">
+  <div class="col s3"></div>
+  <div class="col s6">
+    <div class="message">
+      <div class="created_at"><%= message.created_at.strftime("%B %d, %Y") %></div>
+      <div class="content">
+        <%= link_to message.body, advertisement_message_path(message.advertisement_id, message) %>
+      </div>
+      <div class="actions">
+        <%= link_to "Reply", new_advertisement_message_path(parent_id: message) %> |
+        <%= link_to "Destroy", advertisement_message_path(message.advertisement_id, message), confirm: "Are you sure?", method: :delete %>
+      </div>
+    </div>
+    </div>
+  <div class="col s3"></div>
+</div>

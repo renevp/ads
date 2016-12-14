@@ -1,16 +1,5 @@
-<h4> Messages </h4>
+<% title "Messages" %>
 
-<table class="striped highlight centered">
-  <thead>
-    <tr>
-        <th data-field="id">Username</th>
-        <th data-field="id">Ad</th>
-        <th data-field="name">Message</th>
-        <th data-field="date">Sent at</th>
-    </tr>
-  </thead>
+<%= nested_messages @messages.arrange(order: :created_at) %>
 
-  <tbody>
-    <%= render(@messages) || "No messages yet." %>
-  </tbody>
-</table>
+<%= render "form" %>

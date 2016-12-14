@@ -24,3 +24,83 @@ td {
 .brand-logo {
   padding: 0px 0px 0px 10px !important;
 }
+
+.fieldWithErrors {
+  display: inline;
+}
+
+.error_messages {
+  width: 400px;
+  border: 2px solid #CF0000;
+  padding: 0px;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+  font-size: 12px;
+}
+
+.error_messages h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 10px;
+  font-size: 12px;
+  margin: 0;
+  background-color: #c00;
+  color: #fff;
+}
+
+.error_messages p {
+  margin: 8px 10px;
+}
+
+.error_messages ul {
+  margin: 0;
+}
+
+.message {
+  margin: 8px 0;
+  padding: 8px 15px;
+  border: solid 1px #999;
+  width: 300px;
+  border-radius: 12px;
+  background-image: -webkit-gradient(
+      linear,
+      left bottom,
+      left top,
+      color-stop(0, #CCC),
+      color-stop(1, #F5F5F5)
+  );
+  background-image: -moz-linear-gradient(
+      center bottom,
+      #CCC 0%,
+      #F5F5F5 100%
+  );
+}
+
+.message .content a {
+  color: #000;
+  text-decoration: none;
+}
+
+.message .created_at {
+  color: #555;
+  font-size: 12px;
+  float: right;
+}
+
+.message .actions {
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.message .actions a {
+  text-decoration: none;
+}
+
+.nested_messages {
+  margin-left: 30px;
+}
+
+.nested_messages .nested_messages .nested_messages .nested_messages {
+  margin-left: 0;
+}
