@@ -2,12 +2,18 @@
   <div class="col s3"></div>
   <div class="col s6">
   <%= form_for @advertisement do |f| %>
-    <%= f.text_field :title, placeholder: 'Title'%>
-    <%= f.text_area :description , placeholder: 'Description'%>
-    <%= f.text_field :price_cents, placeholder: 'Price' %>
-    <%= f.text_field :amount, placeholder: 'Amount' %>
-    <%= f.select :status, options_for_select(Advertisement.statuses.keys) %>
-    <%= f.select :ad_type, options_for_select(Advertisement.ad_types.keys) %>
+    <%= f.label :title, "Title" %><br />
+    <%= f.text_field :title %>
+    <%= f.label :description, "Description" %><br />
+    <%= f.text_area :description %>
+    <%= f.label :price_cents, "Price" %><br />
+    <%= f.text_field :price_cents %>
+    <%= f.label :amount, "Amount" %><br />
+    <%= f.text_field :amount %>
+    <%= f.label :status, "Status" %><br />
+    <%= f.select :status, options_for_select(Hash[Advertisement.statuses.map { |k,v| [ k.split('_').first.capitalize, k ]}], @advertisement.status) %>
+    <%= f.label :ad_type, "Type" %><br />
+    <%= f.select :ad_type, options_for_select(Hash[Advertisement.ad_types.map { |k,v| [ k.split('_').first.capitalize, k ]}], @advertisement.ad_type) %>
 
     <%= f.submit 'Create Advertisement', class: 'btn' %>
   <% end %>
