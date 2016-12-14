@@ -1,5 +1,11 @@
-<% title "Messages" %>
+<div class="row">
+  <div class="col s3"></div>
+  <div class="col s6">
+    <h4>Messages</h4>
 
-<%= nested_messages @messages.arrange(order: :created_at) %>
+    <%= nested_messages @messages.arrange(order: :created_at) %>
 
-<%= render "form" %>
+    <%= render "form" %>
+  </div>
+  <div class="col s3"></div>
+</div>

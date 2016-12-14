@@ -1,7 +1,13 @@
-<% title "Reply" %>
+<div class="row">
+  <div class="col s3"></div>
+  <div class="col s6">
+    <h4>Reply</h4>
 
-<%= render @message.parent if @message.parent %>
+    <%= render @message.parent if @message.parent %>
 
-<%= render "form" %>
+    <%= render "form" %>
 
-<p><%= link_to "Back to Messages", advertisement_messages_path %></p>
+    <p><%= link_to "Back to Messages", advertisement_messages_path %></p>
+  </div>
+  <div class="col s3"></div>
+</div>
