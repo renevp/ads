@@ -1,4 +1,4 @@
-<%= form_for @message, url: advertisement_messages_path(@advertisement), html: { method: :post } do |f| %>
+<%= form_for @message, remote: true, url: advertisement_messages_path(@advertisement), html: { method: :post } do |f| %>
   <%= f.error_messages %>
   <%= f.hidden_field :parent_id %>
   <p>

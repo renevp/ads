@@ -18,19 +18,22 @@ class MessagesController < ApplicationController
   end
 
   def create
-    if message_params.permitted?
-      @message = Message.new(message_params)
-      @message.sender = current_user
-      @advertisement = Advertisement.find(params[:advertisement_id])
-      @message.advertisement = @advertisement
-      @message.recipient = User.find(@message.advertisement.user.id)
+    @message = Message.new(message_params)
+    @message.sender = current_user
+    @advertisement = Advertisement.find(params[:advertisement_id])
+    @message.advertisement = @advertisement
+    @message.recipient = User.find(@message.advertisement.user.id)
+
+    respond_to do |format|
       if @message.save
-        redirect_to advertisement_messages_path(@advertisement), notice: "Message has been sent"
+        unless params[:message][:parent_id].empty?
+          format.html { redirect_to advertisement_messages_path(@advertisement), notice: "Message has been sent" }
+        else
+          format.js
+        end
       else
-        render :new, alert: "Message can'be created"
+        format.html { render :new, alert: "Message can'be created" }
       end
-    else
-      render :new, alert: "Message can'be created, invalid params"
     end
   end
 
