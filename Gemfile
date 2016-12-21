@@ -35,6 +35,8 @@ gem 'materialize-sass'
 gem 'devise'
 gem 'money-rails'
 gem 'ancestry'
+gem 'omniauth-facebook' # Facebook authentication
+gem "koala", "~> 2.2" # Facebook API
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
