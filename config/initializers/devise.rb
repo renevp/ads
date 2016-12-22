@@ -249,7 +249,7 @@ Devise.setup do |config|
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
   config.omniauth :facebook, FACEBOOK_CONFIG['app_id'], FACEBOOK_CONFIG['secret'],
-                  scope: 'user_about_me', display: 'popup',
+                  scope: 'public_profile', display: 'popup',
                   callback_url: "http://localhost:3000/users/auth/facebook/callback"
 
   # ==> Warden configuration

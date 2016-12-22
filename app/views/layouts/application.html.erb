@@ -21,6 +21,7 @@
               <li><%= link_to 'Profile', user_path(current_user)%></li>
               <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
             </ul>
+            <li><%= image_tag current_user.picture.to_s, class: 'img-circle' %></li>
           <% else %>
             <li><%= link_to 'Log in', new_user_session_path %></li>
           <% end %>

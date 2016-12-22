@@ -5,18 +5,16 @@
         <span class="card-title"><%= @user.username %></span>
         <span class="card-content">
           <blockquote>
-            <p><%= image_tag @user.picture.to_s %></p>
+            <p><%= image_tag @user.picture.to_s, class: 'img-circle' %></p>
             <% if current_user && current_user.username == @user.username %>
               <p><b> Full name:        </b> <%= @user.full_name %> </p>
-              <p><b> Email:            </b> <%= @user.email %> </p>
-              <p><b> Mobile Phone:     </b> <%= @user.mobile_number %> </p>
             <% end %>
             <p><b> Verified:           </b> <%= @user.verified %> </p>
             <p><b> Account created at: </b> <%= @user.created_at.strftime('%d-%m-%Y-T%H:%M:%z') %> </p>
           <blockquote>
         </span>
       </div>
-      <% if current_user && current_user.username == @user.username %>
+      <% if current_user && current_user.provider != 'facebook' && current_user.username == @user.username %>
         <div class="card-action light-blue darken-4">
           <%= link_to 'Change Account Details', edit_user_registration_path(@user) %>
         </div>
