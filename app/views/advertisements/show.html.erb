@@ -18,12 +18,18 @@
       </div>
       <div class="card-action light-blue darken-4">
       <% if current_user && current_user.username == @advertisement.user.username %>
-        <%= link_to 'Edit Advertisement', edit_advertisement_path(@advertisement) %>
-        <%= link_to 'Delete Advertisement', advertisement_path(@advertisement), data: { confirm: "Are you sure?" }, method: :delete %>
+        <%= link_to edit_advertisement_path(@advertisement) do %>
+          <i class="small material-icons">mode_edit</i>
+        <% end %>
+        <%= link_to advertisement_path(@advertisement), data: { confirm: "Are you sure?" }, method: :delete do %>
+          <i class="small material-icons">warning</i>
+        <% end %>
       <% else %>
         <!-- <%= link_to 'Send New Message', new_advertisement_message_path(@advertisement) %> -->
       <% end %>
-      <%= link_to 'Messages', advertisement_messages_path(@advertisement) %>
+      <%= link_to advertisement_messages_path(@advertisement) do %>
+        <i class="small material-icons">message</i>
+      <% end %>
       </div>
     </div>
   </div>

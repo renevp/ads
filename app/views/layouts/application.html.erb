@@ -15,13 +15,20 @@
         <%= link_to 'Ads', root_path, class: "brand-logo"%>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
           <% if current_user %>
-            <li><%= link_to 'New Ad', new_advertisement_path %></li>
+            <!-- <li><%= link_to 'New Ad', new_advertisement_path %></li> -->
+            <li><%= link_to new_advertisement_path do %>
+              <i class="small material-icons">library_add</i>
+            <% end %></li>
             <li><a class='dropdown-button' data-beloworigin="true" href='#' data-activates='profile'><%= current_user.full_name %></a></li>
             <ul id='profile' class='dropdown-content'>
               <li><%= link_to 'Profile', user_path(current_user)%></li>
               <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
             </ul>
-            <li><%= image_tag current_user.picture.to_s, class: 'img-circle' %></li>
+            <% if current_user.picture.to_s.empty? %>
+              <li><i class="large material-icons">perm_identity</i></li>
+            <% else %>
+              <li><%= image_tag current_user.picture.to_s, class: 'img-circle' %></li>
+            <% end %>
           <% else %>
             <li><%= link_to 'Log in', new_user_session_path %></li>
           <% end %>
