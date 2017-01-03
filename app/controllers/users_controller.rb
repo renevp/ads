@@ -20,6 +20,7 @@ class UsersController < ApplicationController
   end
 
   def username
+    @user.username = ""
   end
 
   def activate
@@ -29,11 +30,6 @@ class UsersController < ApplicationController
     else
       redirect_to user_path(@user), alert: 'There was a problem trying to activate profile'
     end
-  end
-
-  def messages
-    @messages = Message.user_messages(current_user)
-    render 'messages/index'
   end
 
   def destroy
@@ -49,7 +45,7 @@ class UsersController < ApplicationController
     if @user.update_attributes(user_params)
       redirect_to root_path, notice: 'Successfully login'
     else
-      render :username
+      render :username, alert: 'Username was taken, try another one.'
     end
   end
 

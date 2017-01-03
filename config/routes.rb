@@ -9,7 +9,6 @@ Rails.application.routes.draw do
   resources :users do
     member do
       patch 'activate'
-      # get 'messages'
       get 'username'
     end
   end
