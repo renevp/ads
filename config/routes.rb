@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     member do
       patch 'activate'
       # get 'messages'
+      get 'username'
     end
   end
 

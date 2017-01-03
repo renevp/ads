@@ -1,7 +1,7 @@
 
 class UsersController < ApplicationController
   before_action :authenticate_user!, only: [ :edit, :update, :destroy ]
-  before_action :owners_only, only: [ :edit, :update, :destroy ]
+  before_action :owners_only, only: [ :edit, :update, :destroy, :username ]
   rescue_from ActiveRecord::RecordNotFound, with: :invalid_user
 
   def show
@@ -17,6 +17,9 @@ class UsersController < ApplicationController
 
   def new
     redirect_to new_user_session_path
+  end
+
+  def username
   end
 
   def activate
@@ -42,12 +45,16 @@ class UsersController < ApplicationController
     end
   end
 
-  def self.new_with_session(params, session)
-    super.tap do |user|
-      if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
-        user.email = data["email"] if user.email.blank?
-      end
+  def update
+    if @user.update_attributes(user_params)
+      redirect_to root_path, notice: 'Successfully login'
+    else
+      render :username
     end
+  end
+
+  def user_params
+    params.require(:user).permit(:username)
   end
 
   private
