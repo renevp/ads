@@ -3,6 +3,13 @@
   <div class="col s6">
     <h2>Edit advertisement</h2>
   <%= form_for @advertisement do |f| %>
+
+    <% if @advertisement.errors.full_messages.any? %>
+      <% @advertisement.errors.full_messages.each do |error_message| %>
+        <%= error_message %> <br />
+      <% end %>
+    <% end %>
+
     <%= f.label :title, "Title" %><br />
     <%= f.text_field :title %>
     <%= f.label :description, "Description" %><br />
