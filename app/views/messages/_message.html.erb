@@ -1,5 +1,7 @@
 <div class="message">
-  <div class="created_at"><%= message.created_at.strftime("%B %d, %Y") %></div>
+  <div class="created_at"><%= message.created_at.strftime("%B %d, %Y") %> by
+    <%= message.sender.username %>
+  </div>
   <div class="content">
     <%= link_to message.body, advertisement_message_path(message.advertisement_id, message) %>
   </div>

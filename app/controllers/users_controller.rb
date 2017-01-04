@@ -43,9 +43,9 @@ class UsersController < ApplicationController
 
   def update
     if @user.update_attributes(user_params)
-      redirect_to root_path, notice: 'Successfully login'
+      redirect_to root_path, notice: 'Username was successfully created.'
     else
-      render :username, alert: 'Username was taken, try another one.'
+      render :username
     end
   end
 

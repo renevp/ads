@@ -1,6 +1,7 @@
 class MessagesController < ApplicationController
   before_action :authenticate_user!, only: [ :new, :create, :destroy, :index, :show ]
   before_action :owners_only, only: [ :destroy ]
+  before_action :validate_username, only: [ :create ]
 
   def index
     @advertisement = Advertisement.find(params[:advertisement_id])
@@ -53,6 +54,12 @@ class MessagesController < ApplicationController
     @message = Message.find(params[:id])
     if current_user != @message.sender
       redirect_to advertisement_messages_path, alert: "You aren't the owner of this message!"
+    end
+  end
+
+  def validate_username
+    if current_user && current_user.username == 'facebook'
+      redirect_to username_user_path(current_user)
     end
   end
 end

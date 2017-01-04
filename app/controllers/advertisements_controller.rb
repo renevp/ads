@@ -2,6 +2,7 @@
 class AdvertisementsController < ApplicationController
   before_action :authenticate_user!, only: [ :new, :create, :edit, :update, :destroy ]
   before_action :owners_only, only: [ :edit, :update, :destroy ]
+  before_action :validate_username, only: [ :new ]
 
   def index
     redirect_to root_path
@@ -52,6 +53,12 @@ class AdvertisementsController < ApplicationController
     @advertisement = Advertisement.find(params[:id])
     if current_user != @advertisement.user
       redirect_to advertisements_path, alert: "You aren't the owner of this advertisement!"
+    end
+  end
+
+  def validate_username
+    if current_user && current_user.username == 'facebook'
+      redirect_to username_user_path(current_user)
     end
   end
 end
