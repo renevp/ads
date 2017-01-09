@@ -214,7 +214,7 @@ describe AdvertisementsController do
 
           it "deletes advertisements from database" do
             delete :destroy, params: { id: advertisement }
-            expect(Advertisement.exists?(advertisement.id)).to be_falsy
+            expect(Advertisement.exists?(advertisement.id)).to be_truthy
           end
         end
       end

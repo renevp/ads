@@ -28,7 +28,7 @@ class MessagesController < ApplicationController
     respond_to do |format|
       if @message.save
         MessageMailer.new_message(@message).deliver
-        unless params[:message][:parent_id].empty?
+        unless params[:message][:parent_id] && params[:message][:parent_id].empty?
           format.html { redirect_to advertisement_messages_path(@advertisement), notice: "Message has been sent" }
         else
           format.js

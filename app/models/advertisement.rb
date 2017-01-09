@@ -9,7 +9,7 @@ class Advertisement < ApplicationRecord
   validates :price_cents, presence: true
   validates :amount, presence: true
 
-  enum status: [:created, :published, :closed]
+  enum status: [:created, :published, :closed, :archived]
   enum ad_type: [:buy, :sell]
 
   monetize :price_cents

@@ -105,7 +105,7 @@ describe MessagesController do
     describe "POST create" do
 
       context "valid data" do
-        let(:valid_data) { FactoryGirl.attributes_for(:message) }
+        let(:valid_data) { FactoryGirl.attributes_for(:message, :with_parent) }
         it "redirects to messages#index" do
           post :create, params: { advertisement_id: ad, message: valid_data }
           expect(response).to redirect_to(advertisement_messages_path(ad))

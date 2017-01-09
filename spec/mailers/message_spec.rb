@@ -7,7 +7,7 @@ RSpec.describe MessageMailer, type: :mailer do
 
     it "renders the headers" do
       expect(mail.subject).to eq("New message")
-      expect(mail.to).to eq(["to@example.org"])
+      expect(mail.to).to eq([message.recipient.email])
       expect(mail.from).to eq(["from@example.com"])
     end
 

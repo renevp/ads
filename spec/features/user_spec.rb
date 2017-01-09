@@ -20,7 +20,7 @@ feature "user page" do
   let(:message) { FactoryGirl.create(:message, sender: sender, recipient: recipient, body: 'Message 1') }
   let(:user_messages_page) { UserMessagesPage.new }
 
-  scenario "show user's messages" do
+  pending "show user's messages" do
     user_messages_page.messages
     print page.html
     expect(page).to have_content('Message 1')

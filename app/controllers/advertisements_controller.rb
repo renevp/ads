@@ -3,6 +3,7 @@ class AdvertisementsController < ApplicationController
   before_action :authenticate_user!, only: [ :new, :create, :edit, :update, :destroy ]
   before_action :owners_only, only: [ :edit, :update, :destroy ]
   before_action :validate_username, only: [ :new ]
+  rescue_from ActiveRecord::RecordNotFound, with: :invalid_ad
 
   def index
     redirect_to root_path
@@ -38,9 +39,18 @@ class AdvertisementsController < ApplicationController
     end
   end
 
+  # def destroy
+  #   @advertisement.destroy
+  #   redirect_to advertisements_path, notice: 'Advertisement has been deleted'
+  # end
+
   def destroy
-    @advertisement.destroy
-    redirect_to advertisements_path, notice: 'Advertisement has been deleted'
+    @advertisement = Advertisement.find(params[:id])
+    if @advertisement.update(status: :archived)
+      redirect_to advertisements_path, notice: 'Advertisement archived'
+    else
+      redirect_to advertisements_path, alert: 'There was a problem archiving advertisement'
+    end
   end
 
   private
@@ -60,5 +70,9 @@ class AdvertisementsController < ApplicationController
     if current_user && current_user.username == 'facebook'
       redirect_to username_user_path(current_user)
     end
+  end
+
+  def invalid_ad
+    redirect_to root_path, alert: "Ad doesn't exist"
   end
 end
