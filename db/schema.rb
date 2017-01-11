@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161222052704) do
+ActiveRecord::Schema.define(version: 20170111053238) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,15 @@ ActiveRecord::Schema.define(version: 20161222052704) do
     t.string   "price_currency", default: "USD", null: false
     t.integer  "amount",                         null: false
     t.index ["user_id"], name: "index_advertisements_on_user_id", using: :btree
+  end
+
+  create_table "favorites", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "advertisement_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.index ["advertisement_id"], name: "index_favorites_on_advertisement_id", using: :btree
+    t.index ["user_id"], name: "index_favorites_on_user_id", using: :btree
   end
 
   create_table "messages", force: :cascade do |t|
@@ -72,4 +81,6 @@ ActiveRecord::Schema.define(version: 20161222052704) do
   end
 
   add_foreign_key "advertisements", "users"
+  add_foreign_key "favorites", "advertisements"
+  add_foreign_key "favorites", "users"
 end
