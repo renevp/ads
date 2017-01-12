@@ -1,0 +1,14 @@
+<tr>
+  <% unless @user %>
+    <td>
+      <%= link_to favorite.advertisement.user.username, user_path(favorite.advertisement.user)%>
+    </td>
+  <% end %>
+  <td><%= favorite.advertisement.title %></td>
+  <td>
+    <div class="ad-list">
+      <%= link_to 'Show', advertisement_path(favorite.advertisement), class: "waves-effect waves-light btn"%>
+      <%= link_to 'Delete', favorite_path(favorite), confirm: "Are you sure?", method: :delete, class: "waves-effect waves-light btn"%>
+    </div>
+  </td>
+</tr>

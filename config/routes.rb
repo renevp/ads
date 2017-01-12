@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   resources :advertisements do
     resources :messages, except: [:edit, :update]
+    resources :favorites, only: [:create]
   end
 
   resources :users do
@@ -13,7 +14,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :favorites, only: [:create, :destroy, :index]
+  resources :favorites, only: [:destroy, :index]
 
   root to: 'welcome#index'
 end

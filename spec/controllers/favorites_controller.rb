@@ -13,15 +13,17 @@ describe FavoritesController do
     end
 
     describe "POST Create" do
+      let(:ad) { FactoryGirl.create(:advertisement) }
+
       it "needs to be authenticated" do
-        post :create
+        post :create, params: { advertisement_id: ad }
         expect(response).to redirect_to(new_user_session_url)
       end
     end
 
     describe "DELETE" do
       it "needs to be authenticated" do
-        delete :destroy, params: { id: 1 }
+        delete :destroy, params: { id: favorite }
         expect(response).to redirect_to(new_user_session_url)
       end
     end
@@ -40,7 +42,8 @@ describe FavoritesController do
       end
 
       it "shows user favorites" do
-        favorite = FactoryGirl.create(:favorite, user: user)
+        user_favorite = FactoryGirl.create(:favorite, user: user)
+        favorite = FactoryGirl.create(:favorite)
         get :index
 
         assigns(:favorites).each do | f |
@@ -50,12 +53,22 @@ describe FavoritesController do
     end
 
     describe "POST Create" do
-      let(:favorite) { FactoryGirl.attributes_for(:favorite) }
+      let(:ad) { FactoryGirl.create(:advertisement) }
 
-      pending "creates new favorite in database" do
+      it "creates new favorite in database" do
         expect {
-          post :create, params: { favorite: favorite }
+        post :create, params: { advertisement_id: ad }
         }.to change(Favorite, :count).by(1)
+      end
+    end
+
+    describe "DELETE destroy" do
+
+      it "remove the favorite from database" do
+        user_favorite = FactoryGirl.create(:favorite, user: user)
+
+        delete :destroy, params: { id: user_favorite.id }
+        expect(Favorite.exists?(user_favorite.id)).to be_falsy
       end
     end
 

@@ -15,7 +15,7 @@
         <%= link_to 'Ads', root_path, class: "brand-logo"%>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
           <% if current_user %>
-            <!-- <li><%= link_to 'New Ad', new_advertisement_path %></li> -->
+            <li><%= link_to 'Favorites', favorites_path %></li>
             <li><%= link_to new_advertisement_path do %>
               <i class="small material-icons">library_add</i>
             <% end %></li>
