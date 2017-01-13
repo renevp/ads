@@ -12,6 +12,8 @@ Rails.application.routes.draw do
       patch 'activate'
       get 'username'
     end
+
+    resources :reviews, except: [:destroy]
   end
 
   resources :favorites, only: [:destroy, :index]
