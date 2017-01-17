@@ -3,7 +3,7 @@ FactoryGirl.define do
       sequence(:email) { |n| "email#{n}@email.com"}
       password "secretsecret"
 
-      full_name "Rene Vallennilla"
+      full_name "Rene Vallenilla"
       sequence(:username) { |n| "username#{n}" }
       mobile_number "045555555"
       verified true

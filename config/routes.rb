@@ -13,7 +13,7 @@ Rails.application.routes.draw do
       get 'username'
     end
 
-    resources :reviews, except: [:destroy]
+    resources :reviews, except: [:destroy, :show]
   end
 
   resources :favorites, only: [:destroy, :index]
