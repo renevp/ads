@@ -18,14 +18,17 @@
           <blockquote>
         </span>
       </div>
-      <% if current_user && current_user.provider != 'facebook' && current_user.username == @user.username %>
         <div class="card-action light-blue darken-4">
-          <!-- <%= link_to 'Change Account Details', edit_user_registration_path(@user) %> -->
-          <%= link_to edit_user_registration_path(@user) do %>
-            <i class="small material-icons">mode_edit</i>
+          <% if current_user && current_user.provider != 'facebook' && current_user.username == @user.username %>
+            <%= link_to edit_user_registration_path(@user) do %>
+              <i class="small material-icons">mode_edit</i>
+            <% end %>
+          <% else %>
+            <%= link_to user_reviews_path(@user) do %>
+              <i class="small material-icons">stars</i>
+            <% end %>
           <% end %>
         </div>
-      <% end %>
     </div>
   </div>
 </div>
