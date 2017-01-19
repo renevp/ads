@@ -93,7 +93,7 @@ describe ReviewsController do
 
       it "render index template" do
         patch :update, params: { user_id: reviewee, id: review, review: new_review }
-        expect(response).to redirect_to(user_reviews_url(reviewee))
+        expect(response).to redirect_to(user_path(reviewee))
       end
     end
   end
