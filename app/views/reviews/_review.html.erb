@@ -1,4 +1,10 @@
 <tr>
-  <td><%= review.rating%></td>
+  <td>
+    <% if review.rating == 'positive' %>
+      <i class="small material-icons" title="Positive">thumb_up</i>
+    <% else %>
+      <i class="small material-icons" title="Negative">thumb_down</i>
+    <% end %>
+  </td>
   <td><%= review.feedback %></td>
 </tr>

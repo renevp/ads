@@ -21,11 +21,11 @@
         <div class="card-action light-blue darken-4">
           <% if current_user && current_user.provider != 'facebook' && current_user.username == @user.username %>
             <%= link_to edit_user_registration_path(@user) do %>
-              <i class="small material-icons">mode_edit</i>
+              <i class="small material-icons" title="Edit">mode_edit</i>
             <% end %>
-          <% else %>
-            <%= link_to user_reviews_path(@user) do %>
-              <i class="small material-icons">stars</i>
+          <% elsif @user != current_user %>
+            <%= link_to new_user_review_path(@user) do %>
+              <i class="small material-icons" title="Review">stars</i>
             <% end %>
           <% end %>
         </div>
@@ -70,3 +70,23 @@
   </tbody>
 </table>
 <% end %>
+
+<h4> Reviews </h4>
+<% if @reviews.count > 0 %>
+  <table class="striped highlight centered">
+    <thead>
+      <tr>
+          <th data-field="rating">Rating</th>
+          <th data-field="feedback">Feedback</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <%= render(@reviews) %>
+    </tbody>
+  </table>
+<% else %>
+  <p>No reviews yet.</p>
+<% end %>
+
+<br>

@@ -12,12 +12,14 @@
   <body>
     <nav>
       <div class="nav-wrapper">
-        <%= link_to 'Ads', root_path, class: "brand-logo"%>
+        <%= link_to 'Exchange Today', root_path, class: "brand-logo"%>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
           <% if current_user %>
-            <li><%= link_to 'Favorites', favorites_path %></li>
+            <li><%= link_to favorites_path do %>
+              <i class="small material-icons" title="Favorites">turned_in</i>
+            <% end %></li>
             <li><%= link_to new_advertisement_path do %>
-              <i class="small material-icons">library_add</i>
+              <i class="small material-icons" title="New Advertisement">note_add</i>
             <% end %></li>
             <li><a class='dropdown-button' data-beloworigin="true" href='#' data-activates='profile'><%= current_user.full_name %></a></li>
             <ul id='profile' class='dropdown-content'>

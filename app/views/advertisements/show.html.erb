@@ -24,19 +24,19 @@
       <div class="card-action light-blue darken-4">
       <% if current_user && current_user.username == @advertisement.user.username %>
         <%= link_to edit_advertisement_path(@advertisement) do %>
-          <i class="small material-icons">mode_edit</i>
+          <i class="small material-icons" title="Edit">mode_edit</i>
         <% end %>
         <%= link_to advertisement_path(@advertisement), data: { confirm: "Are you sure?" }, method: :delete do %>
-          <i class="small material-icons">warning</i>
+          <i class="small material-icons" title="Delete">delete</i>
         <% end %>
       <% else %>
         <!-- <%= link_to 'Send New Message', new_advertisement_message_path(@advertisement) %> -->
       <% end %>
       <%= link_to advertisement_messages_path(@advertisement) do %>
-        <i class="small material-icons">message</i>
+        <i class="small material-icons" title="Messages">message</i>
       <% end %>
       <%= link_to advertisement_favorites_path(@advertisement), method: :post do %>
-        <i class="small material-icons">work</i>
+        <i class="small material-icons" title="Save to favorites">system_update_alt</i>
       <% end %>
       </div>
     </div>

@@ -5,4 +5,8 @@ class Review < ApplicationRecord
   validates :feedback, presence: true
 
   enum rating: [:positive, :negative]
+
+  scope :user_reviews, ->(user) { joins(:reviewee).where(reviewee: user) }
+
+  scope :user_reviewed?, ->(reviewee, reviewer) { where(reviewee: reviewee, reviewer: reviewer) }
 end

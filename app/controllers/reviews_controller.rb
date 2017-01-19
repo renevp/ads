@@ -14,12 +14,22 @@ class ReviewsController < ApplicationController
   end
 
   def index
-    @reviews = Review.all
+    @user = User.find(params[:user_id])
+    @reviews = Review.user_reviews(@user)
   end
 
   def new
-    @review = Review.new
     @user = User.find(params[:user_id])
+    reviewer = current_user
+    reviewee = @user
+    reviews = Review.user_reviewed?(reviewee, reviewer)
+    if reviews.count > 0
+      @review = reviews[0]
+      render :edit
+      return
+    else
+      @review = Review.new
+    end
   end
 
   def edit
@@ -29,7 +39,7 @@ class ReviewsController < ApplicationController
   def update
     @review = Review.find(params[:id])
     if @review.update_attributes(review_params)
-      redirect_to user_reviews_url(@review.reviewee), notice: 'Review has been updated'
+      redirect_to user_path(@review.reviewee), notice: 'Review has been updated'
     else
       render :edit
     end

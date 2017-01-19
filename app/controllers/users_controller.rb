@@ -13,6 +13,8 @@ class UsersController < ApplicationController
       @sell_ads = Advertisement.user_published_sell(@user)
       @buy_ads = Advertisement.user_published_buy(@user)
     end
+
+    @reviews = Review.user_reviews(@user)
   end
 
   def new
