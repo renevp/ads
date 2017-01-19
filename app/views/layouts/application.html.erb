@@ -10,53 +10,80 @@
   </head>
 
   <body>
-    <nav>
-      <div class="nav-wrapper">
-        <%= link_to 'Exchange Today', root_path, class: "brand-logo"%>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <% if current_user %>
-            <li><%= link_to favorites_path do %>
-              <i class="small material-icons" title="Favorites">turned_in</i>
-            <% end %></li>
-            <li><%= link_to new_advertisement_path do %>
-              <i class="small material-icons" title="New Advertisement">note_add</i>
-            <% end %></li>
-            <li><a class='dropdown-button' data-beloworigin="true" href='#' data-activates='profile'><%= current_user.full_name %></a></li>
-            <ul id='profile' class='dropdown-content'>
-              <li><%= link_to 'Profile', user_path(current_user)%></li>
-              <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
-            </ul>
-            <% if current_user.picture.to_s.empty? %>
-              <li><i class="large material-icons">perm_identity</i></li>
+    <header>
+      <nav>
+        <div class="nav-wrapper">
+          <%= link_to 'Exchange Today', root_path, class: "brand-logo"%>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <% if current_user %>
+              <li><%= link_to favorites_path do %>
+                <i class="small material-icons" title="Favorites">turned_in</i>
+              <% end %></li>
+              <li><%= link_to new_advertisement_path do %>
+                <i class="small material-icons" title="New Advertisement">note_add</i>
+              <% end %></li>
+              <li><a class='dropdown-button' data-beloworigin="true" href='#' data-activates='profile'><%= current_user.full_name %></a></li>
+              <ul id='profile' class='dropdown-content'>
+                <li><%= link_to 'Profile', user_path(current_user)%></li>
+                <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
+              </ul>
+              <% if current_user.picture.to_s.empty? %>
+                <li><i class="large material-icons">perm_identity</i></li>
+              <% else %>
+                <li><%= image_tag current_user.picture.to_s, class: 'img-circle' %></li>
+              <% end %>
             <% else %>
-              <li><%= image_tag current_user.picture.to_s, class: 'img-circle' %></li>
+              <li><%= link_to 'Log in', new_user_session_path %></li>
             <% end %>
-          <% else %>
-            <li><%= link_to 'Log in', new_user_session_path %></li>
-          <% end %>
-        </ul>
-      </div>
-    </nav>
-
-    <% if flash[:notice] %>
-      <div class="card green lighten-5">
-        <div class="card-content green-text">
-          <%= flash[:notice] %>
+          </ul>
         </div>
-      </div>
-    <% end %>
+      </nav>
 
-    <% if flash[:alert] %>
-      <div class="card red lighten-5">
-        <div class="card-content red-text">
-          <%= flash[:alert] %>
+      <% if flash[:notice] %>
+        <div class="card green lighten-5">
+          <div class="card-content green-text">
+            <%= flash[:notice] %>
+          </div>
         </div>
-      </div>
-    <% end %>
+      <% end %>
 
+      <% if flash[:alert] %>
+        <div class="card red lighten-5">
+          <div class="card-content red-text">
+            <%= flash[:alert] %>
+          </div>
+        </div>
+      <% end %>
+    </header>
+
+  <main>
     <div class="container">
       <%= yield %>
     </div>
+  </main>
+
+  <footer class="page-footer">
+    <!-- <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">Footer Content</h5>
+          <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+        </div>
+        <div class="col l4 offset-l2 s12">
+          <h5 class="white-text">Links</h5>
+          <ul>
+            <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+          </ul>
+        </div>
+      </div>
+    </div> -->
+    <div class="footer-copyright">
+      <div class="container">
+      © 2016 Copyright Text
+      <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+      </div>
+    </div>
+  </footer>
   <script>
     $(document).ready(function() {
         $('select').material_select();
