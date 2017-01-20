@@ -1,23 +1,27 @@
+require 'faker'
+
 FactoryGirl.define do
   factory :advertisement do
     title "Dollar sell"
-    description "Selling of dollars"
+    description { Faker::Lorem.sentence }
     status :created
     user
     ad_type :sell
-    price Money.new(0, "AUD")
-    amount 5
+    price { Faker::Commerce.price }
+    amount { Faker::Number.between(50, 2000) }
 
     factory :published_advertisement do
       status :published
     end
 
     factory :published_sell_ad do
+      title "Dollar sell"
       status :published
       ad_type :sell
     end
 
     factory :published_buy_ad do
+      title "Dollar Buy"
       status :published
       ad_type :buy
     end

@@ -5,3 +5,8 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+# rand(5..11).times { FactoryGirl.create(:user) }
+
+rand(5..11).times { FactoryGirl.create(:published_sell_ad) }
+rand(5..11).times { FactoryGirl.create(:published_buy_ad) }

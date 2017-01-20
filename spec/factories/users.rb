@@ -1,13 +1,15 @@
+require 'faker'
+
 FactoryGirl.define do
   factory :user, aliases: [:sender, :recipient, :reviewer, :reviewee] do
-      sequence(:email) { |n| "email#{n}@email.com"}
-      password "secretsecret"
+      email { Faker::Internet.email }
+      password "123456"
 
-      full_name "Rene Vallenilla"
-      sequence(:username) { |n| "username#{n}" }
-      mobile_number "045555555"
-      verified true
+      full_name { Faker::Name.first_name + ' ' + Faker::Name.last_name }
+      username { Faker::GameOfThrones.character.downcase.gsub(/\s+/, "") }
+      mobile_number { Faker::PhoneNumber.cell_phone }
 
+      verified { Faker::Boolean.boolean }
       status :active
 
       factory :inactive_user do
