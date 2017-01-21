@@ -32,7 +32,7 @@ class AdvertisementsController < ApplicationController
   end
 
   def update
-    if @advertisement.update_attributes(advertisement_params)
+    if @advertisement.update(advertisement_params)
       redirect_to advertisement_path(@advertisement), notice: 'Advertisement has been updated'
     else
       render :edit
