@@ -1,6 +1,7 @@
 
 class AdvertisementsController < ApplicationController
   before_action :authenticate_user!, only: [ :new, :create, :edit, :update, :destroy ]
+  before_action :set_advertisement , only: [ :show, :edit, :update, :destroy ]
   before_action :owners_only, only: [ :edit, :update, :destroy ]
   before_action :validate_username, only: [ :new ]
   rescue_from ActiveRecord::RecordNotFound, with: :invalid_ad
@@ -10,7 +11,6 @@ class AdvertisementsController < ApplicationController
   end
 
   def show
-    @advertisement = Advertisement.find(params[:id])
   end
 
   def new
@@ -28,7 +28,6 @@ class AdvertisementsController < ApplicationController
   end
 
   def edit
-    @advertisement
   end
 
   def update
@@ -39,13 +38,7 @@ class AdvertisementsController < ApplicationController
     end
   end
 
-  # def destroy
-  #   @advertisement.destroy
-  #   redirect_to advertisements_path, notice: 'Advertisement has been deleted'
-  # end
-
   def destroy
-    @advertisement = Advertisement.find(params[:id])
     if @advertisement.update(status: :archived)
       redirect_to advertisements_path, notice: 'Advertisement archived'
     else
@@ -59,8 +52,11 @@ class AdvertisementsController < ApplicationController
     params.require(:advertisement).permit(:title, :description, :price_cents, :status, :user, :ad_type, :amount)
   end
 
-  def owners_only
+  def set_advertisement
     @advertisement = Advertisement.find(params[:id])
+  end
+
+  def owners_only
     if current_user != @advertisement.user
       redirect_to advertisements_path, alert: "You aren't the owner of this advertisement!"
     end

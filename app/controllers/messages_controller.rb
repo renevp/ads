@@ -1,27 +1,25 @@
 class MessagesController < ApplicationController
   before_action :authenticate_user!, only: [ :new, :create, :destroy, :index, :show ]
+  before_action :set_message, only: [ :destroy, :show ]
+  before_action :set_advertisement, only: [ :index, :new, :create ]
   before_action :owners_only, only: [ :destroy ]
   before_action :validate_username, only: [ :create ]
 
   def index
-    @advertisement = Advertisement.find(params[:advertisement_id])
     @messages = Message.advertisement_messages(@advertisement)
     @message = Message.new
   end
 
   def show
-    @message = Message.find(params[:id])
   end
 
   def new
     @message = Message.new(parent_id: params[:parent_id])
-    @advertisement = Advertisement.find(params[:advertisement_id])
   end
 
   def create
     @message = Message.new(message_params)
     @message.sender = current_user
-    @advertisement = Advertisement.find(params[:advertisement_id])
     @message.advertisement = @advertisement
     @message.recipient = User.find(@message.advertisement.user.id)
 
@@ -50,8 +48,15 @@ class MessagesController < ApplicationController
     params.require(:message).permit(:title, :body, :recipient, :sender, :advertisement_id, :status, :parent_id)
   end
 
-  def owners_only
+  def set_message
     @message = Message.find(params[:id])
+  end
+
+  def set_advertisement
+    @advertisement = Advertisement.find(params[:advertisement_id])
+  end
+
+  def owners_only
     if current_user != @message.sender
       redirect_to advertisement_messages_path, alert: "You aren't the owner of this message!"
     end

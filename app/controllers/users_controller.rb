@@ -1,11 +1,11 @@
 
 class UsersController < ApplicationController
   before_action :authenticate_user!, only: [ :edit, :update, :destroy ]
+  before_action :set_user, only: [:edit, :update, :destroy, :username, :show, :activate]
   before_action :owners_only, only: [ :edit, :update, :destroy, :username ]
   rescue_from ActiveRecord::RecordNotFound, with: :invalid_user
 
   def show
-    @user = User.find(params[:id])
     if @user == current_user
       @sell_ads = Advertisement.user_all_sell(@user)
       @buy_ads = Advertisement.user_all_buy(@user)
@@ -26,7 +26,6 @@ class UsersController < ApplicationController
   end
 
   def activate
-    @user = User.find(params[:id])
     if @user.update(status: params[:status])
       redirect_to user_path(@user), notice: 'Profile has been activated'
     else
@@ -35,7 +34,6 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user = User.find(params[:id])
     if @user.update(status: :inactive)
       redirect_to user_path(@user), notice: 'Profile is now inactive'
     else
@@ -58,7 +56,6 @@ class UsersController < ApplicationController
   private
 
   def owners_only
-    @user = User.find(params[:id])
     if current_user != @user
       redirect_to user_path
     end
@@ -66,6 +63,10 @@ class UsersController < ApplicationController
 
   def invalid_user
     redirect_to new_user_session_path, alert: "User doesn't exist, please sign up"
+  end
+
+  def set_user
+    @user = User.find(params[:id])
   end
 
 end

@@ -1,6 +1,8 @@
 
 class ReviewsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_review, only: [:edit, :update]
+  before_action :set_user, only: [:new, :index]
 
   def create
     @review = Review.new(review_params)
@@ -14,12 +16,10 @@ class ReviewsController < ApplicationController
   end
 
   def index
-    @user = User.find(params[:user_id])
     @reviews = Review.user_reviews(@user)
   end
 
   def new
-    @user = User.find(params[:user_id])
     reviewer = current_user
     reviewee = @user
     reviews = Review.user_reviewed?(reviewee, reviewer)
@@ -33,11 +33,9 @@ class ReviewsController < ApplicationController
   end
 
   def edit
-    @review = Review.find(params[:id])
   end
 
   def update
-    @review = Review.find(params[:id])
     if @review.update(review_params)
       redirect_to user_path(@review.reviewee), notice: 'Review has been updated'
     else
@@ -49,5 +47,13 @@ class ReviewsController < ApplicationController
 
   def review_params
     params.require(:review).permit(:rating, :feedback)
+  end
+
+  def set_review
+    @review = Review.find(params[:id])
+  end
+
+  def set_user
+    @user = User.find(params[:user_id])
   end
 end
