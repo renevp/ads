@@ -39,18 +39,18 @@
         </div>
       </nav>
 
-      <% if flash[:notice] %>
+      <% if notice %>
         <div class="card green lighten-5">
           <div class="card-content green-text">
-            <%= flash[:notice] %>
+            <%= notice %>
           </div>
         </div>
       <% end %>
 
-      <% if flash[:alert] %>
+      <% if alert %>
         <div class="card red lighten-5">
           <div class="card-content red-text">
-            <%= flash[:alert] %>
+            <%= alert %>
           </div>
         </div>
       <% end %>

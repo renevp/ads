@@ -2,12 +2,12 @@
 class ReviewsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_review, only: [:edit, :update]
-  before_action :set_user, only: [:new, :index]
+  before_action :set_user, only: [:new, :index, :create]
 
   def create
     @review = Review.new(review_params)
     @review.reviewer = current_user
-    @review.reviewee = User.find(params[:user_id])
+    @review.reviewee = @user
     if @review.save
       redirect_to user_path(@review.reviewee), notice: 'Review has been created'
     else
