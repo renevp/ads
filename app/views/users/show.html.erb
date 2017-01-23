@@ -14,7 +14,7 @@
               <p><b> Full name:        </b> <%= @user.full_name %> </p>
             <% end %>
             <p><b> Verified:           </b> <%= @user.verified %> </p>
-            <p><b> Account created at: </b> <%= @user.created_at.strftime('%d-%m-%Y-T%H:%M:%z') %> </p>
+            <p><b> Account created at: </b> <%= @user_decorator.account_created_date %> </p>
           <blockquote>
         </span>
       </div>

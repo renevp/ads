@@ -15,6 +15,7 @@ class UsersController < ApplicationController
     end
 
     @reviews = Review.user_reviews(@user)
+    @user_decorator = UserDecorator.new(@user)
   end
 
   def new
