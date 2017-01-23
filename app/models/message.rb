@@ -8,6 +8,11 @@ class Message < ApplicationRecord
 
   enum status: [:inbox, :sent]
 
-  scope :user_messages, ->(user) { joins(:sender).where(sender: user).or(joins(:sender).where(recipient: user)) }
-  scope :advertisement_messages, ->(advertisement) { joins(:advertisement).where(advertisement: advertisement) }
+  scope :user_messages, ->(user) {
+    joins(:sender).where(sender: user).or(joins(:sender).where(recipient: user))
+  }
+  
+  scope :advertisement_messages, ->(advertisement) {
+    joins(:advertisement).where(advertisement: advertisement)
+  }
 end

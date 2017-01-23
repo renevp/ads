@@ -21,6 +21,7 @@ class UsersController < ApplicationController
     redirect_to new_user_session_path
   end
 
+  # TODO - Check if this function is required
   def username
     @user.username = ""
   end

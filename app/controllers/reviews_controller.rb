@@ -1,4 +1,3 @@
-
 class ReviewsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_review, only: [:edit, :update]
@@ -19,10 +18,11 @@ class ReviewsController < ApplicationController
     @reviews = Review.user_reviews(@user)
   end
 
+  # TODO - Candidate to refactor
   def new
     reviewer = current_user
     reviewee = @user
-    reviews = Review.user_reviewed?(reviewee, reviewer)
+    reviews = Review.users_reviews(reviewee, reviewer)
     if reviews.count > 0
       @review = reviews[0]
       render :edit

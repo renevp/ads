@@ -6,7 +6,12 @@ class Review < ApplicationRecord
 
   enum rating: [:positive, :negative]
 
-  scope :user_reviews, ->(user) { joins(:reviewee).where(reviewee: user) }
+  scope :user_reviews, ->(user) {
+    joins(:reviewee).where(reviewee: user)
+  }
 
-  scope :user_reviewed?, ->(reviewee, reviewer) { where(reviewee: reviewee, reviewer: reviewer) }
+  scope :users_reviews, ->(reviewee, reviewer) {
+    where(reviewee: reviewee, reviewer: reviewer)
+  }
+
 end

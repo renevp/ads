@@ -4,5 +4,7 @@ class Favorite < ApplicationRecord
 
   validates_uniqueness_of :user, scope: :advertisement
 
-  scope :user_favorites, ->(user) { joins(:user).where(user: user) }
+  scope :user_favorites, ->(user) {
+    joins(:user).where(user: user)
+  }
 end
