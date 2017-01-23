@@ -3,7 +3,9 @@ class MessagesController < ApplicationController
   before_action :set_message, only: [ :destroy, :show ]
   before_action :set_advertisement, only: [ :index, :new, :create ]
   before_action :owners_only, only: [ :destroy ]
-  before_action :validate_username, only: [ :create ]
+  before_action :request_username, only: [ :create ]
+
+  include UsernameRequestable
 
   def index
     @messages = Message.advertisement_messages(@advertisement)
@@ -62,9 +64,5 @@ class MessagesController < ApplicationController
     end
   end
 
-  def validate_username
-    if current_user && current_user.username == 'facebook'
-      redirect_to username_user_path(current_user)
-    end
-  end
+
 end
